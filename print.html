@@ -9,32 +9,29 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
+            background-color: #ffffff; /* Forced white for clean printing */
             color: #0f172a;
             line-height: 1.35;
         }
         .retro-header { font-family: 'VT323', monospace; letter-spacing: 0.5px; }
         .page {
             max-width: 8.5in;
-            margin: 2rem auto;
+            margin: 0 auto;
             background: white;
-            box-shadow: 8px 8px 0px rgba(0, 255, 255, 0.2); /* Cyan shadow hint */
-            border: 2px solid #0f172a;
             padding: 0.45in;
+            position: relative;
         }
         @media print {
-            @page { size: letter; margin: 0.45in; }
-            body { background-color: white; -webkit-print-color-adjust: exact; }
-            .page { margin: 0; box-shadow: none; border: none; padding: 0; max-width: 100%; }
-            .no-print { display: none; }
+            @page { size: letter; margin: 0; }
+            body { background-color: white; -webkit-print-color-adjust: exact; margin: 0; padding: 0; }
+            .page { margin: 0; box-shadow: none; border: none; padding: 0.45in; max-width: 100%; height: 100%; }
         }
         .section-title {
             color: #000;
             text-transform: uppercase;
-            border-bottom: 2px solid #00ffff; /* Cyan border */
             padding-bottom: 0.15rem;
-            margin-bottom: 0.5rem;
-            margin-top: 0.75rem;
+            margin-bottom: 0;
+            margin-top: 0.5rem;
             font-weight: 700;
             font-size: 1.1rem;
             display: inline-block;
@@ -52,21 +49,15 @@
 </head>
 <body class="antialiased">
 
-    <div class="max-w-4xl mx-auto mt-4 px-4 no-print flex justify-end">
-        <button onclick="window.print()" class="bg-black border-2 border-cyan-400 text-cyan-400 px-4 py-2 hover:bg-cyan-400 hover:text-black transition flex items-center gap-2 font-bold retro-header text-xl uppercase">
-            [ Save as PDF ]
-        </button>
-    </div>
-
-    <div class="page relative">
+    <!-- The actual 8.5 x 11 page container -->
+    <div class="page border-t-8 border-t-black">
         <!-- Decorative Header Accents -->
-        <div class="absolute top-0 left-0 w-full h-2 bg-black"></div>
-        <div class="absolute top-2 left-0 w-full h-1 bg-cyan-400"></div>
+        <div class="absolute top-0 left-0 w-full h-1 bg-cyan-400"></div>
 
-        <!-- Header -->
-        <header class="mb-4 pt-2">
-            <h1 class="text-4xl font-extrabold text-black tracking-tight uppercase mb-1 retro-header">Heather Rod</h1>
-            <div class="flex items-center gap-3 text-[13px] text-slate-700 font-semibold uppercase tracking-widest bg-slate-100 p-1 px-2 border border-slate-300 inline-flex">
+        <!-- Header: Name and Contact on ONE line -->
+        <header class="mb-4 pt-2 flex flex-row justify-between items-baseline border-b-2 border-slate-200 pb-3">
+            <h1 class="text-4xl font-extrabold text-black tracking-tight uppercase m-0 retro-header">Heather Rod</h1>
+            <div class="text-[12.5px] text-slate-700 font-semibold uppercase tracking-widest flex items-center gap-2">
                 <span>Bloomington, IL</span>
                 <span class="text-fuchsia-500 font-bold">|</span>
                 <span>rodheather23@gmail.com</span>
@@ -82,9 +73,9 @@
             </p>
         </section>
 
-        <!-- Work Experience -->
+        <!-- Professional Experience -->
         <section>
-            <div class="border-b-2 border-cyan-400 mb-3"><h2 class="section-title mb-0 border-none">Work Experience</h2></div>
+            <div class="border-b-2 border-cyan-400 mb-3"><h2 class="section-title border-none">Professional Experience</h2></div>
 
             <!-- State Farm Analyst -->
             <div class="mb-4">
@@ -138,20 +129,20 @@
         <!-- Two Column Bottom Section -->
         <div class="grid grid-cols-2 gap-8 mt-2">
             
-            <!-- Left Column -->
+            <!-- Left Column: Competencies & Leadership -->
             <div>
-                <div class="border-b-2 border-fuchsia-500 mb-2"><h2 class="section-title mb-0 border-none">Core Competencies</h2></div>
-                <ul class="text-[13px] text-slate-800 space-y-2 font-medium">
+                <div class="border-b-2 border-fuchsia-500 mb-2"><h2 class="section-title border-none">Core Competencies</h2></div>
+                <ul class="text-[13px] text-slate-800 space-y-2 font-medium mb-4">
                     <li class="leading-snug"><strong class="text-black uppercase text-[12px] block mb-0.5 bg-slate-200 px-1 inline-block">Data & Analytics:</strong><br> Power BI, Adobe Analytics, Excel</li>
                     <li class="leading-snug"><strong class="text-black uppercase text-[12px] block mb-0.5 bg-slate-200 px-1 inline-block">Strategic Skills:</strong><br> Design Thinking, User Research, Audience Demographics, Sentiment, Measurement</li>
                     <li class="leading-snug"><strong class="text-black uppercase text-[12px] block mb-0.5 bg-slate-200 px-1 inline-block">Digital Platforms:</strong><br> Web & CRM (Drupal, WordPress, SharePoint), Email & Social (Mailchimp, HubSpot, Sprout, Staffbase, Viva Engage)</li>
                 </ul>
             </div>
 
-            <!-- Right Column -->
+            <!-- Right Column: Leadership & Education -->
             <div>
-                <div class="border-b-2 border-fuchsia-500 mb-2"><h2 class="section-title mb-0 border-none">Leadership & Affiliations</h2></div>
-                <div class="mb-4">
+                <div class="border-b-2 border-fuchsia-500 mb-2"><h2 class="section-title border-none">Leadership & Affiliations</h2></div>
+                <div class="mb-5">
                     <div class="flex justify-between items-baseline">
                         <h3 class="font-bold text-[13.5px] text-black uppercase">Pride Business Resource Group</h3>
                     </div>
@@ -162,10 +153,16 @@
                     </ul>
                 </div>
 
-                <div class="border-b-2 border-fuchsia-500 mb-2"><h2 class="section-title mb-0 border-none">Education</h2></div>
-                <div>
+                <!-- Education (Right Aligned) -->
+                <div class="flex justify-end mb-2">
+                    <div class="border-b-2 border-fuchsia-500"><h2 class="section-title border-none">Education</h2></div>
+                </div>
+                <div class="text-right">
                     <h3 class="font-bold text-[13px] text-black uppercase">Bachelor of Arts, Communication</h3>
-                    <p class="text-[13px] text-slate-600 font-medium mt-0.5">Eureka College | Eureka, IL <span class="text-white bg-black px-1.5 py-0.5 text-xs ml-2 font-mono">CLASS OF 2011</span></p>
+                    <p class="text-[13px] text-slate-600 font-medium mt-1">
+                        <span class="text-white bg-black px-1.5 py-0.5 text-xs mr-2 font-mono">CLASS OF 2011</span>
+                        Eureka College | Eureka, IL
+                    </p>
                 </div>
             </div>
 
