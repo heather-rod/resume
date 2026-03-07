@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heather Rod | Interactive Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Y2K Neon Dark Mode (Deep Zinc #09090b, Electric Cyan #06b6d4, Hot Fuchsia #d946ef, Neon Lime #84cc16) -->
+    <!-- Application Structure Plan: Designed as a modern, interactive dashboard with a fixed sidebar for persistent navigation and contact info. The main content area is split into logical, thematic sections (Overview, Strategic Impact, Career Journey, Competencies, Leadership) to facilitate easy exploration. A master-detail interaction model is used for the Career Journey to allow deep dives into roles without cluttering the initial view. -->
+    <!-- Visualization & Content Choices: 1. Strategic Competencies (Goal: Compare) -> Radar Chart (Chart.js) -> Visualizes the intersection of data, strategy, and platforms. 2. Catastrophe Comms Loop (Goal: Organize) -> HTML/CSS Process Flow -> Illustrates the redesigned feedback loop without using SVG. 3. Career Timeline (Goal: Organize) -> Interactive Master-Detail UI -> Prevents text overload, encouraging user interaction to reveal job bullets. 4. Skill Distribution (Goal: Inform) -> Donut Chart (Chart.js) -> Shows the balanced focus across core skill areas. Confirming NO SVG or Mermaid JS used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #09090b; /* zinc-950 */
+            color: #d4d4d8; /* zinc-300 */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 30px 30px; /* Subtle grid for that retro tech vibe */
+        }
+        .chart-container { position: relative; width: 100%; max-width: 500px; margin-left: auto; margin-right: auto; height: 350px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        
+        /* Neon Glow Utility Classes */
+        .glow-cyan { box-shadow: 0 0 10px rgba(6, 182, 212, 0.3), inset 0 0 5px rgba(6, 182, 212, 0.1); }
+        .glow-fuchsia { box-shadow: 0 0 10px rgba(217, 70, 239, 0.3), inset 0 0 5px rgba(217, 70, 239, 0.1); }
+        .glow-lime { box-shadow: 0 0 10px rgba(132, 204, 22, 0.3), inset 0 0 5px rgba(132, 204, 22, 0.1); }
+        
+        .nav-link.active { 
+            background-color: rgba(6, 182, 212, 0.15); 
+            color: #22d3ee; 
+            border-right: 4px solid #06b6d4; 
+            font-weight: 700; 
+            text-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
+        }
+        .job-card.active { 
+            border-color: #06b6d4; 
+            background-color: rgba(6, 182, 212, 0.1); 
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+        }
+        
+        /* Dark Mode Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #18181b; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; border: 1px solid #18181b; }
+        ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row min-h-screen overflow-x-hidden selection:bg-fuchsia-500 selection:text-white">
+
+    <nav class="w-full md:w-72 bg-zinc-900 border-r border-zinc-800 shadow-2xl md:h-screen sticky top-0 flex flex-col z-50">
+        <div class="p-8 border-b border-zinc-800 text-center md:text-left relative">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-lg border-2 border-cyan-400 bg-zinc-950 text-cyan-400 text-3xl font-bold mb-4 glow-cyan">HR</div>
+            <h1 class="text-2xl font-extrabold text-white tracking-tight flex items-center justify-center md:justify-start gap-2">
+                Heather Rod
+                <span class="relative flex h-3 w-3" title="Online Now">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-lime-500"></span>
+                </span>
+            </h1>
+            <p class="text-sm font-bold text-fuchsia-400 mt-1 uppercase tracking-widest text-shadow">Innovative Communicator</p>
+            
+            <div class="mt-6 space-y-3 text-sm text-zinc-400">
+                <div class="flex items-center justify-center md:justify-start gap-3"><span class="text-lg text-cyan-500">&#128205;</span> Bloomington, IL</div>
+                <div class="flex items-center justify-center md:justify-start gap-3"><span class="text-lg text-fuchsia-500">&#9993;</span> rodheather23@gmail.com</div>
+                <div class="flex items-center justify-center md:justify-start gap-3"><span class="text-lg text-lime-500">&#128222;</span> 309.808.9719</div>
+            </div>
+        </div>
+        <div class="flex-1 overflow-y-auto py-6 px-4 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-x-visible font-medium">
+            <a href="#summary" class="nav-link active px-4 py-3 rounded-md text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all whitespace-nowrap border-r-4 border-transparent">Executive Summary</a>
+            <a href="#impact" class="nav-link px-4 py-3 rounded-md text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all whitespace-nowrap border-r-4 border-transparent">Strategic Impact</a>
+            <a href="#experience" class="nav-link px-4 py-3 rounded-md text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all whitespace-nowrap border-r-4 border-transparent">Career Journey</a>
+            <a href="#competencies" class="nav-link px-4 py-3 rounded-md text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all whitespace-nowrap border-r-4 border-transparent">Core Competencies</a>
+            <a href="#leadership" class="nav-link px-4 py-3 rounded-md text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all whitespace-nowrap border-r-4 border-transparent">Leadership & Edu</a>
+        </div>
+    </nav>
+
+    <main class="flex-1 px-6 py-10 md:p-12 lg:p-16 overflow-y-auto">
+        
+        <section id="summary" class="mb-24 pt-4">
+            <h2 class="text-4xl font-black text-white mb-6 tracking-tight uppercase border-b-2 border-zinc-800 pb-2 inline-block">Pioneering Data-Driven Communication</h2>
+            <p class="text-lg text-zinc-300 leading-relaxed mb-10 max-w-4xl">
+                I am an <strong class="text-fuchsia-400 font-bold">innovative communications analyst</strong> championing data literacy and user-centric strategy. I have proven success applying human-centered design to audience insights, developing advanced analytics dashboards, and pioneering frameworks that drive personalized, transparent employee engagement and transform corporate communication culture.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-zinc-900 p-6 rounded-lg border border-cyan-500 glow-cyan hover:-translate-y-1 transition-transform">
+                    <div class="text-4xl mb-4 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">&#128202;</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Data Literacy</h3>
+                    <p class="text-sm text-zinc-400 leading-relaxed">Developing Power BI and Adobe Analytics dashboards to empower peers to independently apply insights.</p>
+                </div>
+                <div class="bg-zinc-900 p-6 rounded-lg border border-fuchsia-500 glow-fuchsia hover:-translate-y-1 transition-transform">
+                    <div class="text-4xl mb-4 text-fuchsia-400 drop-shadow-[0_0_8px_rgba(217,70,239,0.8)]">&#129504;</div>
+                    <h3 class="text-xl font-bold text-white mb-2">User-Centric Strategy</h3>
+                    <p class="text-sm text-zinc-400 leading-relaxed">Applying design thinking to develop comprehensive Audience Communication Profiles for personalized messaging.</p>
+                </div>
+                <div class="bg-zinc-900 p-6 rounded-lg border border-lime-500 glow-lime hover:-translate-y-1 transition-transform">
+                    <div class="text-4xl mb-4 text-lime-400 drop-shadow-[0_0_8px_rgba(132,204,22,0.8)]">&#128172;</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Transparent Comms</h3>
+                    <p class="text-sm text-zinc-400 leading-relaxed">Redesigning feedback loops with open-response metrics to increase employee perception of transparency.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="mb-24 pt-8">
+            <div class="mb-10">
+                <h2 class="text-3xl font-black text-white mb-4 uppercase">Strategic Impact & Methodologies</h2>
+                <p class="text-base text-zinc-400 max-w-3xl">Visualizing the structural changes implemented to advance internal communications, moving from traditional output to data-informed, responsive dialogue.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-zinc-900 p-8 rounded-xl border border-zinc-800 shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 via-fuchsia-500 to-lime-500"></div>
+                    <h3 class="text-xl font-bold text-white mb-6 border-b border-zinc-800 pb-4">The Catastrophe Feedback Loop</h3>
+                    <p class="text-sm text-zinc-400 mb-8">A redesigned process implemented during high-stakes events (e.g., wildfires) to replace static broadcasting with transparent, metric-driven conversations.</p>
+                    
+                    <div class="flex flex-col gap-4">
+                        <div class="bg-zinc-950 border border-zinc-800 p-4 rounded-lg flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-md bg-zinc-900 border border-cyan-500 flex items-center justify-center text-cyan-400 font-bold glow-cyan">1</div>
+                            <div>
+                                <h4 class="font-bold text-zinc-200">High-Stakes Event Occurs</h4>
+                                <p class="text-xs text-zinc-500">Initial communication dispatched.</p>
+                            </div>
+                        </div>
+                        <div class="text-center text-cyan-500 text-2xl font-black drop-shadow-[0_0_5px_rgba(6,182,212,0.8)]">&#8595;</div>
+                        <div class="bg-zinc-950 border border-zinc-800 p-4 rounded-lg flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-md bg-zinc-900 border border-fuchsia-500 flex items-center justify-center text-fuchsia-400 font-bold glow-fuchsia">2</div>
+                            <div>
+                                <h4 class="font-bold text-zinc-200">Open-Response Metrics</h4>
+                                <p class="text-xs text-zinc-500">Collecting unstructured sentiment & direct questions.</p>
+                            </div>
+                        </div>
+                        <div class="text-center text-fuchsia-500 text-2xl font-black drop-shadow-[0_0_5px_rgba(217,70,239,0.8)]">&#8595;</div>
+                        <div class="bg-zinc-950 border border-zinc-800 p-4 rounded-lg flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-md bg-zinc-900 border border-lime-500 flex items-center justify-center text-lime-400 font-bold glow-lime">3</div>
+                            <div>
+                                <h4 class="font-bold text-zinc-200">Data & Sentiment Analysis</h4>
+                                <p class="text-xs text-zinc-500">Processing via dashboards to identify core themes.</p>
+                            </div>
+                        </div>
+                        <div class="text-center text-lime-500 text-2xl font-black drop-shadow-[0_0_5px_rgba(132,204,22,0.8)]">&#8595;</div>
+                        <div class="bg-zinc-950 border border-zinc-800 p-4 rounded-lg flex items-center gap-4 border-l-4 border-l-cyan-500 glow-cyan">
+                            <div class="w-10 h-10 rounded-md bg-cyan-500 flex items-center justify-center text-black font-black">&#10003;</div>
+                            <div>
+                                <h4 class="font-bold text-white">Transparent Enterprise Response</h4>
+                                <p class="text-xs text-cyan-300">Overwhelmingly positive response and perception achieved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 p-8 rounded-xl border border-zinc-800 shadow-2xl flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-fuchsia-500 via-lime-500 to-cyan-500"></div>
+                    <h3 class="text-xl font-bold text-white mb-2 border-b border-zinc-800 pb-4">Strategic Skills Mapping</h3>
+                    <p class="text-sm text-zinc-400 mb-6">A representation of the interdisciplinary strategic focus required to align internal communication frameworks with industry best practices.</p>
+                    <div class="flex-1 flex items-center justify-center">
+                        <div class="chart-container">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="mb-24 pt-8">
+            <div class="mb-10">
+                <h2 class="text-3xl font-black text-white mb-4 uppercase">Interactive Career Journey</h2>
+                <p class="text-base text-zinc-400 max-w-3xl">Select a role from the timeline to explore specific responsibilities, impact metrics, and projects undertaken.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="w-full lg:w-1/3 flex flex-col gap-3" id="job-list">
+                    <!-- Populated by JS -->
+                </div>
+
+                <div class="w-full lg:w-2/3">
+                    <div class="bg-zinc-900 rounded-xl shadow-2xl border border-zinc-800 p-8 md:p-10 sticky top-8 min-h-[450px]">
+                        <div class="mb-8 border-b border-zinc-800 pb-6">
+                            <div class="inline-block px-3 py-1 bg-zinc-800 text-cyan-400 border border-cyan-900 text-xs font-bold rounded mb-4 tracking-widest uppercase" id="detail-dates">Select a role</div>
+                            <h3 class="text-2xl md:text-3xl font-black text-white mb-2 uppercase tracking-tight" id="detail-title">Experience Details</h3>
+                            <p class="text-lg text-fuchsia-400 font-bold flex items-center gap-2" id="detail-company">
+                                <span>&#127986;</span> <span>Company Name</span>
+                            </p>
+                        </div>
+                        <ul class="space-y-5 text-zinc-300 leading-relaxed" id="detail-bullets">
+                            <li class="flex gap-4 items-start text-zinc-500 italic">
+                                Click on a role in the timeline to view achievements and responsibilities.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="competencies" class="mb-24 pt-8">
+            <div class="mb-10">
+                <h2 class="text-3xl font-black text-white mb-4 uppercase">Core Competencies</h2>
+                <p class="text-base text-zinc-400 max-w-3xl">A breakdown of technical proficiencies, strategic skills, and digital platform expertise utilized to drive communication goals.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-800 border-l-4 border-l-cyan-500 shadow-lg">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2"><span class="text-cyan-400 drop-shadow-[0_0_5px_rgba(6,182,212,0.8)]">&#128200;</span> Data & Analytics</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-zinc-950 border border-cyan-900 text-cyan-300 text-sm font-semibold rounded">Power BI</span>
+                            <span class="px-3 py-1 bg-zinc-950 border border-cyan-900 text-cyan-300 text-sm font-semibold rounded">Adobe Analytics</span>
+                            <span class="px-3 py-1 bg-zinc-950 border border-cyan-900 text-cyan-300 text-sm font-semibold rounded">Excel</span>
+                        </div>
+                    </div>
+                    <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-800 border-l-4 border-l-fuchsia-500 shadow-lg">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2"><span class="text-fuchsia-400 drop-shadow-[0_0_5px_rgba(217,70,239,0.8)]">&#127919;</span> Strategic Skills</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-zinc-950 border border-fuchsia-900 text-fuchsia-300 text-sm font-semibold rounded">Design Thinking</span>
+                            <span class="px-3 py-1 bg-zinc-950 border border-fuchsia-900 text-fuchsia-300 text-sm font-semibold rounded">User Research</span>
+                            <span class="px-3 py-1 bg-zinc-950 border border-fuchsia-900 text-fuchsia-300 text-sm font-semibold rounded">Audience Demographics</span>
+                            <span class="px-3 py-1 bg-zinc-950 border border-fuchsia-900 text-fuchsia-300 text-sm font-semibold rounded">Sentiment</span>
+                            <span class="px-3 py-1 bg-zinc-950 border border-fuchsia-900 text-fuchsia-300 text-sm font-semibold rounded">Measurement</span>
+                        </div>
+                    </div>
+                    <div class="bg-zinc-900 p-6 rounded-lg border border-zinc-800 border-l-4 border-l-lime-500 shadow-lg">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2"><span class="text-lime-400 drop-shadow-[0_0_5px_rgba(132,204,22,0.8)]">&#128187;</span> Digital Platforms</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-zinc-950 border border-lime-900 text-lime-300 text-sm font-semibold rounded">Drupal / WordPress</span>
+                            <span class="px-3 py-1 bg-zinc-950 border border-lime-900 text-lime-300 text-sm font-semibold rounded">SharePoint</span>
+                            <span class="px-3 py-1 bg-zinc-950 border border-lime-900 text-lime-300 text-sm font-semibold rounded">Mailchimp / HubSpot</span>
+                            <span class="px-3 py-1 bg-zinc-950 border border-lime-900 text-lime-300 text-sm font-semibold rounded">Sprout / Staffbase</span>
+                            <span class="px-3 py-1 bg-zinc-950 border border-lime-900 text-lime-300 text-sm font-semibold rounded">Viva Engage</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-xl shadow-2xl border border-zinc-800 flex flex-col justify-center items-center">
+                    <h3 class="text-xl font-bold text-white mb-2">Competency Distribution</h3>
+                    <p class="text-sm text-zinc-500 mb-6">Balanced application of modern communication tooling.</p>
+                    <div class="chart-container w-full">
+                        <canvas id="donutChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="leadership" class="mb-12 pt-8">
+            <div class="mb-10">
+                <h2 class="text-3xl font-black text-white mb-4 uppercase">Leadership & Education</h2>
+                <p class="text-base text-zinc-400 max-w-3xl">Demonstrating a commitment to organizational culture, continuous learning, and community engagement.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-zinc-900 rounded-xl p-8 border border-fuchsia-500 glow-fuchsia relative overflow-hidden shadow-2xl">
+                    <div class="absolute -right-4 -top-4 text-9xl opacity-5 text-fuchsia-500">&#9873;</div>
+                    <div class="relative z-10">
+                        <div class="inline-block px-3 py-1 bg-zinc-950 border border-fuchsia-900 text-fuchsia-400 text-xs font-bold rounded mb-4 tracking-widest">07.2023 – Present</div>
+                        <h3 class="text-2xl font-black text-white mb-2 uppercase">Pride BRG</h3>
+                        <p class="text-cyan-400 font-bold mb-8 flex items-center gap-2"><span>&#127986;</span> State Farm</p>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-bold text-lg text-white mb-2 flex items-center gap-2"><span class="text-lime-400 drop-shadow-[0_0_5px_rgba(132,204,22,0.8)]">&#10022;</span> 2026 Engagement Ambassador</h4>
+                                <p class="text-sm text-zinc-400 leading-relaxed border-l-2 border-zinc-800 pl-4 ml-2 hover:border-lime-500 transition-colors">Collaborate with BRG leaders to connect LGBTQ+ employees and allies with each other, the enterprise, and the broader community.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-white mb-2 flex items-center gap-2"><span class="text-lime-400 drop-shadow-[0_0_5px_rgba(132,204,22,0.8)]">&#10022;</span> 2025-2026 Business Pillar Support</h4>
+                                <p class="text-sm text-zinc-400 leading-relaxed border-l-2 border-zinc-800 pl-4 ml-2 hover:border-lime-500 transition-colors">Coordinate content and logistics for quarterly all-member meetings, support virtual events, and develop resources to drive engagement and organizational alignment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 rounded-xl p-8 border border-zinc-800 shadow-2xl flex flex-col justify-center items-center text-center">
+                    <div class="w-20 h-20 bg-zinc-950 border border-zinc-700 rounded-lg flex items-center justify-center text-4xl mb-6 shadow-inner">&#127891;</div>
+                    <h3 class="text-2xl font-black text-white mb-2 uppercase">Bachelor of Arts</h3>
+                    <h4 class="text-xl font-bold text-cyan-400 mb-2">Communication</h4>
+                    <p class="text-lg text-zinc-500 font-medium mb-6">Eureka College | Eureka, IL</p>
+                    <div class="px-6 py-2 bg-zinc-950 border border-cyan-500 text-cyan-400 font-bold rounded text-sm tracking-widest glow-cyan">CLASS OF 2011</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const experienceData = [
+            {
+                id: 'sf-analyst',
+                title: 'Communications Analyst',
+                company: 'State Farm | Corporate Communications',
+                dates: '05.2024 – Present',
+                bullets: [
+                    'Developed Power BI and Adobe Analytics dashboards to enable greater understanding of audiences and content performance, empowering peers to independently and confidently apply data and insights.',
+                    'Redesigned catastrophe communication feedback loops using open-response metrics during high-stakes events, resulting in overwhelmingly positive response and increased employee perception of enterprise transparency.',
+                    'Researched and co-developed internal channels benchmarking and an effective internal communication framework alongside senior leadership to align with industry best practices.'
+                ]
+            },
+            {
+                id: 'sf-specialist',
+                title: 'Public Affairs Comms Specialist',
+                company: 'State Farm',
+                dates: '07.2023 – 05.2024',
+                bullets: [
+                    'Researched and reported for SFnet News and assumed ownership of quarterly reporting for internal channels.',
+                    'Applied design thinking to develop comprehensive Audience Communication Profiles, equipping specialists to understand unique audience needs and deliver personalized, relevant messaging.'
+                ]
+            },
+            {
+                id: 'isa-manager',
+                title: 'Digital Manager',
+                company: 'Illinois Soybean Association',
+                dates: '08.2020 – 07.2023',
+                bullets: [
+                    'Connected 43,000 farmers to the work of the organization through multiple digital channels, pioneering digital marketing and analytics standards and practices among state soybean associations.',
+                    'Coordinated, directed, and collaborated with external contractors and internal stakeholders on multiple concurrent organizational and departmental projects, delivering visible value to constituents.',
+                    'Launched and nurtured internship program and provided company-wide HR/IT services during leadership vacancies, demonstrating adaptability and accountability through periods of disruption and uncertainty.'
+                ]
+            },
+            {
+                id: 'previous-roles',
+                title: 'Earlier Career History',
+                company: 'Various Organizations',
+                dates: '2013 – 2020',
+                bullets: [
+                    'Digital Coordinator, Support Services Coordinator | Illinois Soybean Association (2019-2020)',
+                    'HR Recruiter | The Kelly Group (2018)',
+                    'Total Rewards Specialist | Pekin Insurance (2017-2018)',
+                    'HR Roles | Skill Sprout (2014-2017)',
+                    'Food Truck Co-Owner and Manager | Nacho Mama\'s Grilled Cheese (2013-2017)'
+                ]
+            }
+        ];
+
+        function initTimeline() {
+            const listContainer = document.getElementById('job-list');
+            
+            experienceData.forEach((job, index) => {
+                const button = document.createElement('button');
+                button.className = `job-card w-full text-left p-5 rounded-lg border-2 transition-all duration-200 ${index === 0 ? 'active' : 'border-zinc-800 bg-zinc-900 hover:border-cyan-500 hover:bg-zinc-800 text-zinc-400'}`;
+                button.innerHTML = `
+                    <h4 class="font-bold text-white text-lg">${job.title}</h4>
+                    <p class="text-sm font-medium mt-1 uppercase tracking-wider ${index === 0 ? 'text-cyan-400' : 'text-zinc-500'}">${job.dates}</p>
+                `;
+                
+                button.onclick = () => {
+                    document.querySelectorAll('.job-card').forEach(btn => {
+                        btn.classList.remove('active', 'border-cyan-500', 'bg-cyan-900/20');
+                        btn.classList.add('border-zinc-800', 'bg-zinc-900', 'text-zinc-400');
+                        btn.querySelector('p').classList.remove('text-cyan-400');
+                        btn.querySelector('p').classList.add('text-zinc-500');
+                        btn.style.boxShadow = 'none';
+                    });
+                    button.classList.remove('border-zinc-800', 'bg-zinc-900', 'text-zinc-400');
+                    button.classList.add('active', 'border-cyan-500');
+                    button.style.backgroundColor = 'rgba(6, 182, 212, 0.1)';
+                    button.style.boxShadow = '0 0 15px rgba(6, 182, 212, 0.2)';
+                    button.querySelector('p').classList.remove('text-zinc-500');
+                    button.querySelector('p').classList.add('text-cyan-400');
+                    
+                    renderJobDetails(job);
+                };
+                
+                listContainer.appendChild(button);
+            });
+
+            renderJobDetails(experienceData[0]);
+        }
+
+        function renderJobDetails(job) {
+            document.getElementById('detail-title').textContent = job.title;
+            document.getElementById('detail-company').innerHTML = `<span>&#127986;</span> <span>${job.company}</span>`;
+            document.getElementById('detail-dates').textContent = job.dates;
+            
+            const ul = document.getElementById('detail-bullets');
+            ul.innerHTML = '';
+            
+            job.bullets.forEach(bullet => {
+                const li = document.createElement('li');
+                li.className = 'flex gap-4 items-start';
+                li.innerHTML = `
+                    <span class="text-cyan-400 mt-1 text-lg leading-none drop-shadow-[0_0_5px_rgba(6,182,212,0.8)]">&#8227;</span>
+                    <span class="text-zinc-300 font-medium">${bullet}</span>
+                `;
+                ul.appendChild(li);
+            });
+        }
+
+        function wrapLabel(text, maxChars = 16) {
+            if(text.length <= maxChars) return text;
+            let words = text.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if((currentLine + word).length > maxChars){
+                    if(currentLine) lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else {
+                    currentLine += word + ' ';
+                }
+            });
+            if(currentLine) lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipConfig = {
+            plugins: {
+                tooltip: {
+                    backgroundColor: 'rgba(9, 9, 11, 0.9)',
+                    titleColor: '#fff',
+                    bodyColor: '#d4d4d8',
+                    borderColor: '#06b6d4',
+                    borderWidth: 1,
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        function initCharts() {
+            Chart.defaults.font.family = "'Inter', sans-serif";
+            Chart.defaults.color = '#a1a1aa'; // zinc-400 for dark mode
+
+            const radarCtx = document.getElementById('radarChart').getContext('2d');
+            new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        wrapLabel('Design Thinking'),
+                        wrapLabel('User Research'),
+                        wrapLabel('Audience Demographics'),
+                        wrapLabel('Sentiment Analysis'),
+                        wrapLabel('Measurement')
+                    ],
+                    datasets: [{
+                        label: 'Strategic Focus',
+                        data: [95, 85, 90, 85, 95],
+                        backgroundColor: 'rgba(6, 182, 212, 0.2)', // cyan low opacity
+                        borderColor: '#06b6d4', // cyan-500
+                        pointBackgroundColor: '#d946ef', // fuchsia-500
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#d946ef',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255,255,255,0.1)' },
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            pointLabels: { font: { size: 12, weight: '600' }, color: '#e4e4e7' }, // zinc-200
+                            ticks: { display: false, min: 0, max: 100 }
+                        }
+                    },
+                    ...tooltipConfig
+                }
+            });
+
+            const donutCtx = document.getElementById('donutChart').getContext('2d');
+            new Chart(donutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        wrapLabel('Strategic Skills (Design Thinking, Sentiment)'),
+                        wrapLabel('Data & Analytics (Power BI, Adobe)'),
+                        wrapLabel('Digital Platforms (CRM, SharePoint)')
+                    ],
+                    datasets: [{
+                        data: [40, 35, 25],
+                        backgroundColor: [
+                            '#d946ef', // fuchsia-500
+                            '#06b6d4', // cyan-500
+                            '#84cc16'  // lime-500
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true, color: '#e4e4e7' } },
+                        tooltip: tooltipConfig.plugins.tooltip
+                    }
+                }
+            });
+        }
+
+        function setupScrollSpy() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    link.style.cssText = ""; 
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                        link.style.backgroundColor = 'rgba(6, 182, 212, 0.15)'; 
+                        link.style.color = '#22d3ee';
+                        link.style.borderRight = '4px solid #06b6d4';
+                        link.style.fontWeight = '700';
+                        link.style.textShadow = '0 0 8px rgba(34, 211, 238, 0.5)';
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initTimeline();
+            initCharts();
+            setupScrollSpy();
+        });
+    </script>
+</body>
+</html>
