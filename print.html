@@ -11,39 +11,41 @@
             font-family: 'Inter', sans-serif;
             background-color: #ffffff; /* Forced white for clean printing */
             color: #0f172a;
-            line-height: 1.35;
+            line-height: 1.25; /* Tightened line height */
         }
         .retro-header { font-family: 'VT323', monospace; letter-spacing: 0.5px; }
         .page {
             max-width: 8.5in;
             margin: 0 auto;
             background: white;
-            padding: 0.45in;
+            padding: 0.3in; /* Minimal margins */
             position: relative;
+            box-sizing: border-box;
         }
         @media print {
             @page { size: letter; margin: 0; }
             body { background-color: white; -webkit-print-color-adjust: exact; margin: 0; padding: 0; }
-            .page { margin: 0; box-shadow: none; border: none; padding: 0.45in; max-width: 100%; height: 100%; }
+            .page { margin: 0; box-shadow: none; border: none; padding: 0.3in; max-width: 8.5in; height: 11in; }
         }
         .section-title {
             color: #000;
             text-transform: uppercase;
-            padding-bottom: 0.15rem;
+            padding-bottom: 0.1rem;
             margin-bottom: 0;
-            margin-top: 0.5rem;
+            margin-top: 0.25rem;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             display: inline-block;
         }
         ul.custom-bullet { list-style-type: none; padding-left: 0; }
-        ul.custom-bullet li { position: relative; padding-left: 1rem; margin-bottom: 0.35rem; }
+        ul.custom-bullet li { position: relative; padding-left: 0.85rem; margin-bottom: 0.25rem; }
         ul.custom-bullet li::before {
             content: "▶";
             position: absolute;
             left: 0;
             color: #ff00ff; /* Fuchsia bullet */
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            top: 0.1rem;
         }
     </style>
 </head>
@@ -55,9 +57,9 @@
         <div class="absolute top-0 left-0 w-full h-1 bg-cyan-400"></div>
 
         <!-- Header: Name and Contact on ONE line -->
-        <header class="mb-4 pt-2 flex flex-row justify-between items-baseline border-b-2 border-slate-200 pb-3">
+        <header class="mb-3 pt-1 flex flex-row justify-between items-baseline border-b-2 border-slate-200 pb-2">
             <h1 class="text-4xl font-extrabold text-black tracking-tight uppercase m-0 retro-header">Heather Rod</h1>
-            <div class="text-[12.5px] text-slate-700 font-semibold uppercase tracking-widest flex items-center gap-2">
+            <div class="text-[12px] text-slate-700 font-semibold uppercase tracking-widest flex items-center gap-2">
                 <span>Bloomington, IL</span>
                 <span class="text-fuchsia-500 font-bold">|</span>
                 <span>rodheather23@gmail.com</span>
@@ -67,24 +69,24 @@
         </header>
 
         <!-- Professional Summary -->
-        <section class="mb-5">
-            <p class="text-slate-800 text-[13.5px] leading-relaxed">
+        <section class="mb-4">
+            <p class="text-slate-800 text-[13px] leading-relaxed">
                 <strong class="text-black bg-cyan-100 px-1">Innovative communications analyst</strong> championing data literacy and user-centric strategy. Proven success applying human-centered design to audience insights, developing advanced analytics dashboards, and pioneering frameworks that drive personalized, transparent employee engagement and transform corporate communication culture.
             </p>
         </section>
 
         <!-- Professional Experience -->
         <section>
-            <div class="border-b-2 border-cyan-400 mb-3"><h2 class="section-title border-none">Professional Experience</h2></div>
+            <div class="border-b-2 border-cyan-400 mb-2.5"><h2 class="section-title border-none">Professional Experience</h2></div>
 
             <!-- State Farm Analyst -->
-            <div class="mb-4">
+            <div class="mb-3">
                 <div class="flex justify-between items-baseline">
-                    <h3 class="text-[14.5px] font-bold text-black uppercase">Communications Analyst, Corporate Comms</h3>
-                    <span class="text-xs font-bold text-white bg-black px-2 py-0.5 font-mono">05.2024 – Present</span>
+                    <h3 class="text-[14px] font-bold text-black uppercase">Communications Analyst, Corporate Comms</h3>
+                    <span class="text-[11px] font-bold text-white bg-black px-1.5 py-0.5 font-mono">05.2024 – Present</span>
                 </div>
-                <p class="text-[13px] font-bold text-slate-500 mb-1.5 uppercase tracking-wider">State Farm | Bloomington, IL</p>
-                <ul class="custom-bullet text-[13px] text-slate-800 font-medium">
+                <p class="text-[12.5px] font-bold text-slate-500 mb-1 uppercase tracking-wider">State Farm | Bloomington, IL</p>
+                <ul class="custom-bullet text-[12.5px] text-slate-800 font-medium">
                     <li>Developed Power BI and Adobe Analytics dashboards to enable greater understanding of audiences and content performance, empowering peers to independently and confidently apply data and insights.</li>
                     <li>Redesigned catastrophe communication feedback loops using open-response metrics during high-stakes events, resulting in overwhelmingly positive response and increased employee perception of enterprise transparency.</li>
                     <li>Researched and co-developed internal channels benchmarking and an effective internal communication framework alongside senior leadership to align with industry best practices.</li>
@@ -92,26 +94,26 @@
             </div>
 
             <!-- State Farm Specialist -->
-            <div class="mb-4">
+            <div class="mb-3">
                 <div class="flex justify-between items-baseline">
-                    <h3 class="text-[14.5px] font-bold text-black uppercase">Public Affairs Communications Specialist</h3>
-                    <span class="text-xs font-bold text-white bg-black px-2 py-0.5 font-mono">07.2023 – 05.2024</span>
+                    <h3 class="text-[14px] font-bold text-black uppercase">Public Affairs Communications Specialist</h3>
+                    <span class="text-[11px] font-bold text-white bg-black px-1.5 py-0.5 font-mono">07.2023 – 05.2024</span>
                 </div>
-                <p class="text-[13px] font-bold text-slate-500 mb-1.5 uppercase tracking-wider">State Farm | Bloomington, IL</p>
-                <ul class="custom-bullet text-[13px] text-slate-800 font-medium">
+                <p class="text-[12.5px] font-bold text-slate-500 mb-1 uppercase tracking-wider">State Farm | Bloomington, IL</p>
+                <ul class="custom-bullet text-[12.5px] text-slate-800 font-medium">
                     <li>Researched and reported for SFnet News and assumed ownership of quarterly reporting for internal channels.</li>
                     <li>Applied design thinking to develop comprehensive Audience Communication Profiles, equipping specialists to understand unique audience needs and deliver personalized, relevant messaging.</li>
                 </ul>
             </div>
 
             <!-- Illinois Soybean Association Manager -->
-            <div class="mb-4">
+            <div class="mb-3">
                 <div class="flex justify-between items-baseline">
-                    <h3 class="text-[14.5px] font-bold text-black uppercase">Digital Manager</h3>
-                    <span class="text-xs font-bold text-white bg-black px-2 py-0.5 font-mono">08.2020 – 07.2023</span>
+                    <h3 class="text-[14px] font-bold text-black uppercase">Digital Manager</h3>
+                    <span class="text-[11px] font-bold text-white bg-black px-1.5 py-0.5 font-mono">08.2020 – 07.2023</span>
                 </div>
-                <p class="text-[13px] font-bold text-slate-500 mb-1.5 uppercase tracking-wider">Illinois Soybean Association | Bloomington, IL</p>
-                <ul class="custom-bullet text-[13px] text-slate-800 font-medium">
+                <p class="text-[12.5px] font-bold text-slate-500 mb-1 uppercase tracking-wider">Illinois Soybean Association | Bloomington, IL</p>
+                <ul class="custom-bullet text-[12.5px] text-slate-800 font-medium">
                     <li>Connected 43,000 farmers to the work of the organization through multiple digital channels, pioneering digital marketing and analytics standards and practices among state soybean associations.</li>
                     <li>Coordinated, directed, and collaborated with external contractors and internal stakeholders on multiple concurrent organizational and departmental projects, delivering visible value to constituents.</li>
                     <li>Launched and nurtured internship program and provided company-wide HR/IT services during leadership vacancies, demonstrating adaptability and accountability through periods of disruption and uncertainty.</li>
@@ -119,49 +121,46 @@
             </div>
 
             <!-- Previous Experience -->
-            <div class="mb-4">
-                <p class="text-[11.5px] text-slate-600 mt-1 leading-relaxed border border-slate-300 bg-slate-50 p-2 font-medium">
+            <div class="mb-3">
+                <p class="text-[11px] text-slate-600 mt-1 leading-relaxed border border-slate-300 bg-slate-50 p-1.5 font-medium">
                     <strong class="text-black uppercase">Additional Experience:</strong> Digital Coordinator, Support Services Coordinator (ISA, 2019-2020) • HR Recruiter (The Kelly Group, 2018) • Total Rewards Specialist (Pekin Insurance, 2017-2018) • HR Roles (Skill Sprout, 2014-2017) • Business Co-Owner & Manager (Nacho Mama's Grilled Cheese, 2013-2017)
                 </p>
             </div>
         </section>
 
         <!-- Two Column Bottom Section -->
-        <div class="grid grid-cols-2 gap-8 mt-2">
+        <div class="grid grid-cols-2 gap-6 mt-2">
             
             <!-- Left Column: Competencies & Leadership -->
             <div>
-                <div class="border-b-2 border-fuchsia-500 mb-2"><h2 class="section-title border-none">Core Competencies</h2></div>
-                <ul class="text-[13px] text-slate-800 space-y-2 font-medium mb-4">
-                    <li class="leading-snug"><strong class="text-black uppercase text-[12px] block mb-0.5 bg-slate-200 px-1 inline-block">Data & Analytics:</strong><br> Power BI, Adobe Analytics, Excel</li>
-                    <li class="leading-snug"><strong class="text-black uppercase text-[12px] block mb-0.5 bg-slate-200 px-1 inline-block">Strategic Skills:</strong><br> Design Thinking, User Research, Audience Demographics, Sentiment, Measurement</li>
-                    <li class="leading-snug"><strong class="text-black uppercase text-[12px] block mb-0.5 bg-slate-200 px-1 inline-block">Digital Platforms:</strong><br> Web & CRM (Drupal, WordPress, SharePoint), Email & Social (Mailchimp, HubSpot, Sprout, Staffbase, Viva Engage)</li>
+                <div class="border-b-2 border-fuchsia-500 mb-1.5"><h2 class="section-title border-none">Core Competencies</h2></div>
+                <ul class="text-[12.5px] text-slate-800 space-y-1.5 font-medium">
+                    <li class="leading-snug"><strong class="text-black uppercase text-[11px] block mb-0.5 bg-slate-200 px-1 inline-block">Data & Analytics:</strong><br> Power BI, Adobe Analytics, Excel</li>
+                    <li class="leading-snug"><strong class="text-black uppercase text-[11px] block mb-0.5 bg-slate-200 px-1 inline-block">Strategic Skills:</strong><br> Design Thinking, User Research, Audience Demographics, Sentiment, Measurement</li>
+                    <li class="leading-snug"><strong class="text-black uppercase text-[11px] block mb-0.5 bg-slate-200 px-1 inline-block">Digital Platforms:</strong><br> Web & CRM (Drupal, WordPress, SharePoint), Email & Social (Mailchimp, HubSpot, Sprout, Staffbase, Viva Engage)</li>
                 </ul>
             </div>
 
             <!-- Right Column: Leadership & Education -->
             <div>
-                <div class="border-b-2 border-fuchsia-500 mb-2"><h2 class="section-title border-none">Leadership & Affiliations</h2></div>
-                <div class="mb-5">
+                <div class="border-b-2 border-fuchsia-500 mb-1.5"><h2 class="section-title border-none">Leadership & Affiliations</h2></div>
+                <div class="mb-3">
                     <div class="flex justify-between items-baseline">
-                        <h3 class="font-bold text-[13.5px] text-black uppercase">Pride Business Resource Group</h3>
+                        <h3 class="font-bold text-[13px] text-black uppercase">Pride Business Resource Group</h3>
                     </div>
-                    <p class="text-[12px] text-slate-500 font-bold mb-1.5 uppercase tracking-wider">State Farm | 07.2023 – Present</p>
-                    <ul class="custom-bullet text-[12.5px] text-slate-800 leading-snug font-medium">
+                    <p class="text-[11px] text-slate-500 font-bold mb-1 uppercase tracking-wider">State Farm | 07.2023 – Present</p>
+                    <ul class="custom-bullet text-[12px] text-slate-800 leading-snug font-medium">
                         <li><strong>2026 Engagement Ambassador:</strong> Collaborate with BRG leaders to connect LGBTQ+ employees and allies with each other, the enterprise, and the broader community.</li>
-                        <li><strong>2025-2026 Business Pillar Support:</strong> Coordinate content and logistics for quarterly all-member meetings, support virtual events, and develop resources to drive engagement.</li>
+                        <li><strong>2025-2026 Business Pillar Support:</strong> Coordinate content and logistics for quarterly all-member meetings, support virtual events, and develop resources.</li>
                     </ul>
                 </div>
 
-                <!-- Education (Right Aligned) -->
-                <div class="flex justify-end mb-2">
-                    <div class="border-b-2 border-fuchsia-500"><h2 class="section-title border-none">Education</h2></div>
-                </div>
-                <div class="text-right">
+                <!-- Education (Left Aligned to match Leadership) -->
+                <div class="border-b-2 border-fuchsia-500 mb-1.5"><h2 class="section-title border-none">Education</h2></div>
+                <div>
                     <h3 class="font-bold text-[13px] text-black uppercase">Bachelor of Arts, Communication</h3>
-                    <p class="text-[13px] text-slate-600 font-medium mt-1">
-                        <span class="text-white bg-black px-1.5 py-0.5 text-xs mr-2 font-mono">CLASS OF 2011</span>
-                        Eureka College | Eureka, IL
+                    <p class="text-[12.5px] text-slate-600 font-medium mt-0.5">
+                        Eureka College | Eureka, IL <span class="text-white bg-black px-1.5 py-0.5 text-[10px] ml-2 font-mono align-middle">CLASS OF 2011</span>
                     </p>
                 </div>
             </div>
