@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heather Rod - Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            line-height: 1.35;
+        }
+        .retro-header { font-family: 'VT323', monospace; letter-spacing: 0.5px; }
+        .page {
+            max-width: 8.5in;
+            margin: 2rem auto;
+            background: white;
+            box-shadow: 8px 8px 0px rgba(0, 255, 255, 0.2); /* Cyan shadow hint */
+            border: 2px solid #0f172a;
+            padding: 0.45in;
+        }
+        @media print {
+            @page { size: letter; margin: 0.45in; }
+            body { background-color: white; -webkit-print-color-adjust: exact; }
+            .page { margin: 0; box-shadow: none; border: none; padding: 0; max-width: 100%; }
+            .no-print { display: none; }
+        }
+        .section-title {
+            color: #000;
+            text-transform: uppercase;
+            border-bottom: 2px solid #00ffff; /* Cyan border */
+            padding-bottom: 0.15rem;
+            margin-bottom: 0.5rem;
+            margin-top: 0.75rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+        }
+        ul.custom-bullet { list-style-type: none; padding-left: 0; }
+        ul.custom-bullet li { position: relative; padding-left: 1rem; margin-bottom: 0.35rem; }
+        ul.custom-bullet li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #ff00ff; /* Fuchsia bullet */
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="max-w-4xl mx-auto mt-4 px-4 no-print flex justify-end">
+        <button onclick="window.print()" class="bg-black border-2 border-cyan-400 text-cyan-400 px-4 py-2 hover:bg-cyan-400 hover:text-black transition flex items-center gap-2 font-bold retro-header text-xl uppercase">
+            [ Save as PDF ]
+        </button>
+    </div>
+
+    <div class="page relative">
+        <!-- Decorative Header Accents -->
+        <div class="absolute top-0 left-0 w-full h-2 bg-black"></div>
+        <div class="absolute top-2 left-0 w-full h-1 bg-cyan-400"></div>
+
+        <!-- Header -->
+        <header class="mb-4 pt-2">
+            <h1 class="text-4xl font-extrabold text-black tracking-tight uppercase mb-1 retro-header">Heather Rod</h1>
+            <div class="flex items-center gap-3 text-[13px] text-slate-700 font-semibold uppercase tracking-widest bg-slate-100 p-1 px-2 border border-slate-300 inline-flex">
+                <span>Bloomington, IL</span>
+                <span class="text-fuchsia-500 font-bold">|</span>
+                <span>rodheather23@gmail.com</span>
+                <span class="text-fuchsia-500 font-bold">|</span>
+                <span>309.808.9719</span>
+            </div>
+        </header>
+
+        <!-- Professional Summary -->
+        <section class="mb-5">
+            <p class="text-slate-800 text-[13.5px] leading-relaxed">
+                <strong class="text-black bg-cyan-100 px-1">Innovative communications analyst</strong> championing data literacy and user-centric strategy. Proven success applying human-centered design to audience insights, developing advanced analytics dashboards, and pioneering frameworks that drive personalized, transparent employee engagement and transform corporate communication culture.
+            </p>
+        </section>
+
+        <!-- Work Experience -->
+        <section>
+            <div class="border-b-2 border-cyan-400 mb-3"><h2 class="section-title mb-0 border-none">Work Experience</h2></div>
+
+            <!-- State Farm Analyst -->
+            <div class="mb-4">
+                <div class="flex justify-between items-baseline">
+                    <h3 class="text-[14.5px] font-bold text-black uppercase">Communications Analyst, Corporate Comms</h3>
+                    <span class="text-xs font-bold text-white bg-black px-2 py-0.5 font-mono">05.2024 – Present</span>
+                </div>
+                <p class="text-[13px] font-bold text-slate-500 mb-1.5 uppercase tracking-wider">State Farm | Bloomington, IL</p>
+                <ul class="custom-bullet text-[13px] text-slate-800 font-medium">
+                    <li>Developed Power BI and Adobe Analytics dashboards to enable greater understanding of audiences and content performance, empowering peers to independently and confidently apply data and insights.</li>
+                    <li>Redesigned catastrophe communication feedback loops using open-response metrics during high-stakes events, resulting in overwhelmingly positive response and increased employee perception of enterprise transparency.</li>
+                    <li>Researched and co-developed internal channels benchmarking and an effective internal communication framework alongside senior leadership to align with industry best practices.</li>
+                </ul>
+            </div>
+
+            <!-- State Farm Specialist -->
+            <div class="mb-4">
+                <div class="flex justify-between items-baseline">
+                    <h3 class="text-[14.5px] font-bold text-black uppercase">Public Affairs Communications Specialist</h3>
+                    <span class="text-xs font-bold text-white bg-black px-2 py-0.5 font-mono">07.2023 – 05.2024</span>
+                </div>
+                <p class="text-[13px] font-bold text-slate-500 mb-1.5 uppercase tracking-wider">State Farm | Bloomington, IL</p>
+                <ul class="custom-bullet text-[13px] text-slate-800 font-medium">
+                    <li>Researched and reported for SFnet News and assumed ownership of quarterly reporting for internal channels.</li>
+                    <li>Applied design thinking to develop comprehensive Audience Communication Profiles, equipping specialists to understand unique audience needs and deliver personalized, relevant messaging.</li>
+                </ul>
+            </div>
+
+            <!-- Illinois Soybean Association Manager -->
+            <div class="mb-4">
+                <div class="flex justify-between items-baseline">
+                    <h3 class="text-[14.5px] font-bold text-black uppercase">Digital Manager</h3>
+                    <span class="text-xs font-bold text-white bg-black px-2 py-0.5 font-mono">08.2020 – 07.2023</span>
+                </div>
+                <p class="text-[13px] font-bold text-slate-500 mb-1.5 uppercase tracking-wider">Illinois Soybean Association | Bloomington, IL</p>
+                <ul class="custom-bullet text-[13px] text-slate-800 font-medium">
+                    <li>Connected 43,000 farmers to the work of the organization through multiple digital channels, pioneering digital marketing and analytics standards and practices among state soybean associations.</li>
+                    <li>Coordinated, directed, and collaborated with external contractors and internal stakeholders on multiple concurrent organizational and departmental projects, delivering visible value to constituents.</li>
+                    <li>Launched and nurtured internship program and provided company-wide HR/IT services during leadership vacancies, demonstrating adaptability and accountability through periods of disruption and uncertainty.</li>
+                </ul>
+            </div>
+
+            <!-- Previous Experience -->
+            <div class="mb-4">
+                <p class="text-[11.5px] text-slate-600 mt-1 leading-relaxed border border-slate-300 bg-slate-50 p-2 font-medium">
+                    <strong class="text-black uppercase">Additional Experience:</strong> Digital Coordinator, Support Services Coordinator (ISA, 2019-2020) • HR Recruiter (The Kelly Group, 2018) • Total Rewards Specialist (Pekin Insurance, 2017-2018) • HR Roles (Skill Sprout, 2014-2017) • Business Co-Owner & Manager (Nacho Mama's Grilled Cheese, 2013-2017)
+                </p>
+            </div>
+        </section>
+
+        <!-- Two Column Bottom Section -->
+        <div class="grid grid-cols-2 gap-8 mt-2">
+            
+            <!-- Left Column -->
+            <div>
+                <div class="border-b-2 border-fuchsia-500 mb-2"><h2 class="section-title mb-0 border-none">Core Competencies</h2></div>
+                <ul class="text-[13px] text-slate-800 space-y-2 font-medium">
+                    <li class="leading-snug"><strong class="text-black uppercase text-[12px] block mb-0.5 bg-slate-200 px-1 inline-block">Data & Analytics:</strong><br> Power BI, Adobe Analytics, Excel</li>
+                    <li class="leading-snug"><strong class="text-black uppercase text-[12px] block mb-0.5 bg-slate-200 px-1 inline-block">Strategic Skills:</strong><br> Design Thinking, User Research, Audience Demographics, Sentiment, Measurement</li>
+                    <li class="leading-snug"><strong class="text-black uppercase text-[12px] block mb-0.5 bg-slate-200 px-1 inline-block">Digital Platforms:</strong><br> Web & CRM (Drupal, WordPress, SharePoint), Email & Social (Mailchimp, HubSpot, Sprout, Staffbase, Viva Engage)</li>
+                </ul>
+            </div>
+
+            <!-- Right Column -->
+            <div>
+                <div class="border-b-2 border-fuchsia-500 mb-2"><h2 class="section-title mb-0 border-none">Leadership & Affiliations</h2></div>
+                <div class="mb-4">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-bold text-[13.5px] text-black uppercase">Pride Business Resource Group</h3>
+                    </div>
+                    <p class="text-[12px] text-slate-500 font-bold mb-1.5 uppercase tracking-wider">State Farm | 07.2023 – Present</p>
+                    <ul class="custom-bullet text-[12.5px] text-slate-800 leading-snug font-medium">
+                        <li><strong>2026 Engagement Ambassador:</strong> Collaborate with BRG leaders to connect LGBTQ+ employees and allies with each other, the enterprise, and the broader community.</li>
+                        <li><strong>2025-2026 Business Pillar Support:</strong> Coordinate content and logistics for quarterly all-member meetings, support virtual events, and develop resources to drive engagement.</li>
+                    </ul>
+                </div>
+
+                <div class="border-b-2 border-fuchsia-500 mb-2"><h2 class="section-title mb-0 border-none">Education</h2></div>
+                <div>
+                    <h3 class="font-bold text-[13px] text-black uppercase">Bachelor of Arts, Communication</h3>
+                    <p class="text-[13px] text-slate-600 font-medium mt-0.5">Eureka College | Eureka, IL <span class="text-white bg-black px-1.5 py-0.5 text-xs ml-2 font-mono">CLASS OF 2011</span></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
