@@ -34,9 +34,9 @@
 
     <div id="root">
         <div style="color: #00ffff; font-family: 'VT323', monospace; padding: 40px 20px; font-size: 24px; text-align: center; border: 2px solid #00ffff; margin: 20px; box-shadow: 0 0 10px rgba(0,255,255,0.5);">
-            INITIALIZING SYSTEM...<br><br>
+            BOOTING HEATHER_ROD.EXE...<br><br>
             <span style="font-size: 14px; color: #cbd5e1; font-family: sans-serif;">
-                (Loading mobile interface...)
+                (Loading system modules...)
             </span>
         </div>
     </div>
@@ -44,251 +44,282 @@
     <script type="text/babel">
         const { useState } = React;
 
-        function App() {
-          // Static Data
-          const data = {
+        // --- DATA STORE ---
+        const data = {
             profile: {
-              name: "Heather Rod",
-              tagline: "Vibin' n thrivin' since '89",
-              gender: "Female",
-              location: "Bloomington, IL",
-              email: "rodheather23@gmail.com"
+                name: "Heather Rod",
+                tagline: "Vibin' n thrivin' since '89",
+                gender: "Female",
+                location: "Bloomington, IL",
+                email: "rodheather23@gmail.com"
             },
             interests: {
-              general: "I am a highly creative analyst, chaos coordinator, and professional cat wrangler. When I'm not untangling complex data or communications strategies, I'm finding order in the noise.",
-              hobbies: "Competitive Powerlifting, Cooking & Baking, Deep-Dive Reading.",
-              fixations: "Creative problem solving, behavioral psychology, and mapping organizational dynamics."
+                general: "I am a highly creative analyst, chaos coordinator, and professional cat wrangler. When I'm not untangling complex data or communications strategies, I'm finding order in the noise.",
+                hobbies: "Competitive Powerlifting, Cooking & Baking, Deep-Dive Reading.",
+                fixations: "Creative problem solving, behavioral psychology, and mapping organizational dynamics."
+            },
+            links: {
+                storygraph: "https://app.thestorygraph.com/profile/haterrod",
+                spotify: "https://open.spotify.com/user/1228970516?si=9khD3RgCR-eu_uZXzINy_g"
             },
             blurbs: {
-              about: "I am an innovative communications analyst championing data literacy and user-centric strategy. I have proven success applying human-centered design to audience insights, developing intuitive analytics dashboards, and pioneering approaches that drive personalized, transparent employee engagement and transform corporate communication culture.",
-              target: "Future-focused deep thinkers looking to bridge the gap between qualitative storytelling and hard quantitative metrics. I thrive in environments that require strategic foresight and the ability to turn complex stakeholder networks into streamlined, sustainable systems."
+                about: "I am an innovative communications analyst championing data literacy and user-centric strategy. I have proven success applying human-centered design to audience insights, developing intuitive analytics dashboards, and pioneering approaches that drive personalized, transparent employee engagement and transform corporate communication culture.",
+                target: "Future-focused deep thinkers looking to bridge the gap between qualitative storytelling and hard quantitative metrics. I thrive in environments that require strategic foresight and the ability to turn complex stakeholder networks into streamlined, sustainable systems."
             },
             jobs: [
-              {
-                id: "job-1",
-                title: "Communications Analyst",
-                company: "State Farm | Corporate Comms",
-                dates: "05.2024 – Present",
-                bullets: [
-                  "Developed Power BI and Adobe Analytics dashboards to enable greater understanding of audiences and content performance, empowering peers to independently and confidently apply data and insights.",
-                  "Redesigned catastrophe communication feedback loops using open-response metrics during high-stakes events, resulting in overwhelmingly positive response and increased employee perception of enterprise transparency.",
-                  "Researched and co-developed internal channels benchmarking and an effective internal communication framework alongside senior leadership to align with industry best practices."
-                ]
-              },
-              {
-                id: "job-2",
-                title: "Public Affairs Specialist",
-                company: "State Farm",
-                dates: "07.2023 – 05.2024",
-                bullets: [
-                  "Researched and reported for SFnet News and assumed ownership of quarterly reporting for internal channels.",
-                  "Applied design thinking to develop comprehensive Audience Communication Profiles, equipping specialists to understand unique audience needs and deliver personalized, relevant messaging."
-                ]
-              },
-              {
-                id: "job-3",
-                title: "Digital Manager",
-                company: "Illinois Soybean Association",
-                dates: "08.2020 – 07.2023",
-                bullets: [
-                  "Connected 43,000 farmers to the work of the organization through multiple digital channels, pioneering digital marketing and analytics standards and practices among soybean associations.",
-                  "Coordinated, directed, and collaborated with external contractors and internal stakeholders on multiple concurrent organizational and departmental projects, delivering visible value to constituents.",
-                  "Launched and nurtured internship program and provided company-wide HR/IT services during leadership vacancies, demonstrating accountability and adaptability through periods of disruption and uncertainty."
-                ]
-              },
-              {
-                id: "job-4",
-                title: "Digital & Support Coordinator",
-                company: "Illinois Soybean Association",
-                dates: "01.2019 – 08.2020",
-                bullets: [
-                  "Assisted Director of IT with web management, database management, and company-wide systems administration.",
-                  "Provided general support for ISA communication utilizing digital platforms."
-                ]
-              },
-              {
-                id: "job-5",
-                title: "HR & Business Ops",
-                company: "Various Organizations",
-                dates: "2013 – 2018",
-                bullets: [
-                  "HR Recruiter | The Kelly Group (04.2018 – 12.2018)",
-                  "Total Rewards Specialist | Pekin Insurance (04.2017 – 03.2018)",
-                  "HR Roles | Skill Sprout, LLC (12.2014 – 04.2017)",
-                  "Business Co-Owner & Manager | Nacho Mama's Grilled Cheese Food Truck (07.2013 – 06.2017)"
-                ]
-              }
+                {
+                    id: "job-1",
+                    title: "Communications Analyst",
+                    company: "State Farm | Corporate Comms",
+                    dates: "05.2024 – Present",
+                    bullets: [
+                        "Developed Power BI and Adobe Analytics dashboards to enable greater understanding of audiences and content performance, empowering peers to independently and confidently apply data and insights.",
+                        "Redesigned catastrophe communication feedback loops using open-response metrics during high-stakes events, resulting in overwhelmingly positive response and increased employee perception of enterprise transparency.",
+                        "Researched and co-developed internal channels benchmarking and an effective internal communication framework alongside senior leadership to align with industry best practices."
+                    ]
+                },
+                {
+                    id: "job-2",
+                    title: "Public Affairs Specialist",
+                    company: "State Farm",
+                    dates: "07.2023 – 05.2024",
+                    bullets: [
+                        "Researched and reported for SFnet News and assumed ownership of quarterly reporting for internal channels.",
+                        "Applied design thinking to develop comprehensive Audience Communication Profiles, equipping specialists to understand unique audience needs and deliver personalized, relevant messaging."
+                    ]
+                },
+                {
+                    id: "job-3",
+                    title: "Digital Manager",
+                    company: "Illinois Soybean Association",
+                    dates: "08.2020 – 07.2023",
+                    bullets: [
+                        "Connected 43,000 farmers to the work of the organization through multiple digital channels, pioneering digital marketing and analytics standards and practices among soybean associations.",
+                        "Coordinated, directed, and collaborated with external contractors and internal stakeholders on multiple concurrent organizational and departmental projects, delivering visible value to constituents.",
+                        "Launched and nurtured internship program and provided company-wide HR/IT services during leadership vacancies, demonstrating accountability and adaptability through periods of disruption and uncertainty."
+                    ]
+                },
+                {
+                    id: "job-4",
+                    title: "Digital & Support Coordinator",
+                    company: "Illinois Soybean Association",
+                    dates: "01.2019 – 08.2020",
+                    bullets: [
+                        "Assisted Director of IT with web management, database management, and company-wide systems administration.",
+                        "Provided general support for ISA communication utilizing digital platforms."
+                    ]
+                },
+                {
+                    id: "job-5",
+                    title: "HR & Business Ops",
+                    company: "Various Organizations",
+                    dates: "2013 – 2018",
+                    bullets: [
+                        "HR Recruiter | The Kelly Group (04.2018 – 12.2018)",
+                        "Total Rewards Specialist | Pekin Insurance (04.2017 – 03.2018)",
+                        "HR Roles | Skill Sprout, LLC (12.2014 – 04.2017)",
+                        "Business Co-Owner & Manager | Nacho Mama's Grilled Cheese Food Truck (07.2013 – 06.2017)"
+                    ]
+                }
             ],
             competencies: {
-              data: "Power BI, Adobe Analytics, Excel",
-              strategy: "Design Thinking, User Research, Audience Demographics, Sentiment, Measurement",
-              platforms: "Drupal, WordPress, SharePoint, Mailchimp, HubSpot, Sprout, Staffbase, Viva Engage"
+                data: "Power BI, Adobe Analytics, Excel",
+                strategy: "Design Thinking, User Research, Audience Demographics, Sentiment, Measurement",
+                platforms: "Drupal, WordPress, SharePoint, Mailchimp, HubSpot, Sprout, Staffbase, Viva Engage"
             }
-          };
+        };
 
-          const [activeJobId, setActiveJobId] = useState(data.jobs[0]?.id);
-          const activeJob = data.jobs.find(j => j.id === activeJobId) || data.jobs[0];
+        // --- MAIN APPLICATION COMPONENT ---
+        function App() {
+            const [activeJobId, setActiveJobId] = useState(data.jobs[0]?.id);
+            const activeJob = data.jobs.find(j => j.id === activeJobId) || data.jobs[0];
 
-          return (
-            <div className="min-h-screen bg-black text-slate-200 selection:bg-cyan-400 selection:text-black pb-12 overflow-x-hidden w-full">
-              <style dangerouslySetInnerHTML={{__html: `
-                body {
-                  background-image: 
-                    linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px), 
-                    linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
-                  background-size: 20px 20px;
-                  background-color: #000;
-                  overflow-x: hidden;
-                }
-                .retro-text { font-family: 'VT323', monospace; letter-spacing: 1px; }
-                .inter-text { font-family: 'Inter', sans-serif; }
-                .panel { border: 2px solid; background-color: rgba(15, 23, 42, 0.8); }
-                .panel-cyan { border-color: #00ffff; box-shadow: 2px 2px 0px #00ffff; }
-                .panel-fuchsia { border-color: #ff00ff; box-shadow: 2px 2px 0px #ff00ff; }
-                .panel-lime { border-color: #39ff14; box-shadow: 2px 2px 0px #39ff14; }
-                .panel-header { padding: 4px 8px; font-family: 'VT323', monospace; font-size: 1.1rem; text-transform: uppercase; }
-                @media (min-width: 768px) { .panel-header { font-size: 1.25rem; } }
-
-                
-                /* Custom Scrollbar */
-                ::-webkit-scrollbar { width: 6px; height: 6px; }
-                ::-webkit-scrollbar-track { background: #000; border-left: 1px solid #00ffff; border-top: 1px solid #00ffff; }
-                ::-webkit-scrollbar-thumb { background: #ff00ff; }
-                ::-webkit-scrollbar-thumb:hover { background: #00ffff; }
-                .blink { animation: blinker 1.5s linear infinite; }
-                @keyframes blinker { 50% { opacity: 0; } }
-              `}} />
-
-              <div className="p-2 sm:p-4 md:p-8 max-w-7xl mx-auto w-full">
-                
-                {/* Header */}
-                <header className="panel panel-cyan mb-4 md:mb-6 bg-black flex flex-col md:flex-row justify-center md:justify-start items-center p-3 md:p-4">
-                  <div className="text-xl sm:text-2xl md:text-4xl text-cyan-400 retro-text uppercase tracking-widest drop-shadow-[0_0_5px_rgba(0,255,255,0.8)] text-center md:text-left">
-                    █ Heather_Rod.exe<span className="blink">_</span>
-                  </div>
-                </header>
-
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 inter-text">
-                  {/* LEFT COLUMN */}
-                  <div className="lg:col-span-4 space-y-4 md:space-y-6">
-                    
-                    <div className="panel panel-fuchsia p-4 text-center">
-                      <h1 className="text-2xl sm:text-3xl text-white retro-text mb-3 md:mb-4">{data.profile.name}</h1>
-                      <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 mx-auto border-2 md:border-4 border-fuchsia-500 mb-3 md:mb-4 flex items-center justify-center bg-zinc-900 text-fuchsia-500 text-4xl md:text-6xl shadow-[0_0_10px_rgba(255,0,255,0.5)]">
-                        🍕
-                      </div>
-                      <p className="retro-text text-lg sm:text-xl text-cyan-400 mb-2">"{data.profile.tagline}"</p>
-                      <p className="text-xs sm:text-sm font-bold text-lime-400">♀ {data.profile.gender} | {data.profile.location}</p>
-                    </div>
-
-                    <div className="panel panel-cyan">
-                      <div className="panel-header bg-cyan-400 text-black">Contacting Heather</div>
-                      <div className="p-3 md:p-4 flex flex-col gap-2 text-xs sm:text-sm font-medium">
-                        <a href={`mailto:${data.profile.email}`} className="border border-zinc-700 p-2 flex items-center gap-2 md:gap-3 truncate hover:border-cyan-400 hover:text-cyan-400 transition-colors cursor-pointer group">
-                          <span className="text-cyan-400 text-base md:text-lg group-hover:drop-shadow-[0_0_5px_rgba(0,255,255,0.8)]">✉️</span> {data.profile.email}
-                        </a>
-                        <a href="Heather_Rod_Resume.pdf" target="_blank" className="mt-2 block border border-fuchsia-500 bg-fuchsia-500/10 text-fuchsia-400 p-3 text-center hover:bg-fuchsia-500 hover:text-white transition-colors retro-text text-base md:text-lg uppercase">
-                          [ Download PDF ]
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="panel panel-lime">
-                      <div className="panel-header bg-lime-400 text-black">Interests & Details</div>
-                      <div className="p-3 md:p-4 text-xs sm:text-sm space-y-3 md:space-y-4">
-                        <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-base md:text-lg">General</strong><p className="text-slate-300 leading-relaxed">{data.interests.general}</p></div>
-                        <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-base md:text-lg">Hobbies</strong><p className="text-slate-300">{data.interests.hobbies}</p></div>
-                        <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-base md:text-lg">Professional Fixations</strong><p className="text-slate-300">{data.interests.fixations}</p></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* RIGHT COLUMN */}
-                  <div className="lg:col-span-8 space-y-4 md:space-y-6">
-                    
-                    <div className="panel panel-fuchsia">
-                      <div className="panel-header bg-fuchsia-500 text-white">Heather's Blurbs</div>
-                      <div className="p-4 md:p-6">
-                        <h2 className="retro-text text-xl md:text-2xl text-fuchsia-400 mb-2 border-b border-zinc-800 pb-1 md:pb-2">About me:</h2>
-                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4 md:mb-6 font-medium">{data.blurbs.about}</p>
-                        <h2 className="retro-text text-xl md:text-2xl text-fuchsia-400 mb-2 border-b border-zinc-800 pb-1 md:pb-2">Who I'd like to meet:</h2>
-                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">{data.blurbs.target}</p>
-                      </div>
-                    </div>
-
-                    <div className="panel panel-cyan">
-                      <div className="panel-header bg-cyan-400 text-black">Professional Experience</div>
-                      <div className="p-0 flex flex-col md:flex-row border-t border-zinc-800">
+            return (
+                <div className="min-h-screen bg-black text-slate-200 selection:bg-cyan-400 selection:text-black pb-12 overflow-x-hidden w-full">
+                    <style dangerouslySetInnerHTML={{__html: `
+                        body {
+                            background-image: 
+                                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px), 
+                                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+                            background-size: 20px 20px;
+                            background-color: #000;
+                        }
+                        .retro-text { font-family: 'VT323', monospace; letter-spacing: 1px; }
+                        .inter-text { font-family: 'Inter', sans-serif; }
+                        .panel { border: 2px solid; background-color: rgba(15, 23, 42, 0.8); }
+                        .panel-cyan { border-color: #00ffff; box-shadow: 2px 2px 0px #00ffff; }
+                        .panel-fuchsia { border-color: #ff00ff; box-shadow: 2px 2px 0px #ff00ff; }
+                        .panel-lime { border-color: #39ff14; box-shadow: 2px 2px 0px #39ff14; }
+                        .panel-yellow { border-color: #facc15; box-shadow: 2px 2px 0px #facc15; }
+                        .panel-header { padding: 4px 8px; font-family: 'VT323', monospace; font-size: 1.1rem; text-transform: uppercase; }
                         
-                        {/* Horizontal Scroll on Mobile, Vertical on Desktop */}
-                        <div className="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-zinc-800 bg-zinc-950 p-2 md:p-4 flex md:flex-col gap-2 overflow-x-auto md:overflow-y-auto hide-scrollbar touch-pan-x">
-                          {data.jobs.map((job) => (
-                            <div 
-                              key={job.id} 
-                              onClick={() => setActiveJobId(job.id)} 
-                              className={`shrink-0 w-[200px] md:w-auto cursor-pointer p-3 rounded border text-left transition-all ${activeJobId === job.id ? 'border-fuchsia-500 bg-fuchsia-500/10 border-l-4 md:border-l-4 md:border-b-1 border-b-4 md:border-b-fuchsia-500' : 'border-zinc-800 hover:border-cyan-500 hover:bg-cyan-500/10'}`}
-                            >
-                              <div className="font-bold text-white text-[13px] md:text-sm truncate">{job.title}</div>
-                              <div className="text-[10px] md:text-xs text-zinc-500 mt-1 font-mono truncate">{job.dates}</div>
+                        ::-webkit-scrollbar { width: 6px; height: 6px; }
+                        ::-webkit-scrollbar-track { background: #000; border-left: 1px solid #00ffff; border-top: 1px solid #00ffff; }
+                        ::-webkit-scrollbar-thumb { background: #ff00ff; }
+                        ::-webkit-scrollbar-thumb:hover { background: #00ffff; }
+                        .blink { animation: blinker 1.5s linear infinite; }
+                        @keyframes blinker { 50% { opacity: 0; } }
+                    `}} />
+
+                    <div className="p-2 sm:p-4 md:p-8 max-w-7xl mx-auto w-full">
+                        
+                        {/* Global Header */}
+                        <header className="mb-4 md:mb-6">
+                            <div className="panel panel-cyan bg-black p-3 md:p-4 flex flex-col md:flex-row justify-between items-center gap-3">
+                                <div className="text-2xl sm:text-3xl md:text-4xl text-cyan-400 retro-text uppercase tracking-widest drop-shadow-[0_0_5px_rgba(0,255,255,0.8)]">
+                                    █ H8R.ROD_OS<span className="blink">_</span>
+                                </div>
+                                <div className="text-xs md:text-sm font-mono text-zinc-400">
+                                    SYS.STATUS: <span className="text-lime-400 font-bold">ONLINE</span> // ROLE: MACHINE
+                                </div>
                             </div>
-                          ))}
+                        </header>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 inter-text">
+                            {/* LEFT COLUMN */}
+                            <div className="lg:col-span-4 space-y-4 md:space-y-6">
+                                
+                                {/* Identity */}
+                                <div className="panel panel-fuchsia p-4 text-center">
+                                    <h1 className="text-2xl sm:text-3xl text-white retro-text mb-3 md:mb-4">{data.profile.name}</h1>
+                                    <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 mx-auto border-2 md:border-4 border-fuchsia-500 mb-3 md:mb-4 flex items-center justify-center bg-zinc-900 text-fuchsia-500 text-4xl md:text-6xl shadow-[0_0_10px_rgba(255,0,255,0.5)]">
+                                        🍕
+                                    </div>
+                                    <p className="retro-text text-lg sm:text-xl text-cyan-400 mb-2">"{data.profile.tagline}"</p>
+                                    <p className="text-xs sm:text-sm font-bold text-lime-400">♀ {data.profile.gender} | {data.profile.location}</p>
+                                </div>
+
+                                {/* Contacting */}
+                                <div className="panel panel-cyan">
+                                    <div className="panel-header bg-cyan-400 text-black">Contacting Heather</div>
+                                    <div className="p-3 md:p-4 flex flex-col gap-2 text-xs sm:text-sm font-medium">
+                                        <a href={`mailto:${data.profile.email}`} className="border border-zinc-700 p-2 flex items-center justify-center gap-2 md:gap-3 truncate hover:border-cyan-400 hover:text-cyan-400 transition-colors cursor-pointer group">
+                                            <span className="text-cyan-400 text-base md:text-lg group-hover:drop-shadow-[0_0_5px_rgba(0,255,255,0.8)]">✉️</span> {data.profile.email}
+                                        </a>
+                                        <a href="Heather_Rod_Resume.pdf" target="_blank" className="mt-2 block border border-fuchsia-500 bg-fuchsia-500/10 text-fuchsia-400 p-3 text-center hover:bg-fuchsia-500 hover:text-white transition-colors retro-text text-base md:text-lg uppercase">
+                                            [ Download PDF ]
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {/* External Directories (New Links) */}
+                                <div className="panel panel-yellow">
+                                    <div className="panel-header bg-yellow-400 text-black">External Directories</div>
+                                    <div className="p-3 md:p-4 flex flex-col gap-3 text-xs sm:text-sm font-medium">
+                                        <a href={data.links.storygraph} target="_blank" className="border border-zinc-700 p-2 flex items-center gap-3 truncate hover:border-yellow-400 hover:text-yellow-400 transition-colors cursor-pointer bg-zinc-950">
+                                            <span className="text-yellow-400 text-xl">📚</span> 
+                                            <div>
+                                                <div className="text-white">StoryGraph</div>
+                                                <div className="text-[10px] text-zinc-500 font-mono">@haterrod</div>
+                                            </div>
+                                        </a>
+                                        <a href={data.links.spotify} target="_blank" className="border border-zinc-700 p-2 flex items-center gap-3 truncate hover:border-lime-400 hover:text-lime-400 transition-colors cursor-pointer bg-zinc-950">
+                                            <span className="text-lime-400 text-xl">🎵</span> 
+                                            <div>
+                                                <div className="text-white">Spotify</div>
+                                                <div className="text-[10px] text-zinc-500 font-mono">Playlists & Vibes</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {/* Interests */}
+                                <div className="panel panel-lime">
+                                    <div className="panel-header bg-lime-400 text-black">Interests & Details</div>
+                                    <div className="p-3 md:p-4 text-xs sm:text-sm space-y-3 md:space-y-4">
+                                        <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-base md:text-lg">General</strong><p className="text-slate-300 leading-relaxed">{data.interests.general}</p></div>
+                                        <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-base md:text-lg">Hobbies</strong><p className="text-slate-300">{data.interests.hobbies}</p></div>
+                                        <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-base md:text-lg">Professional Fixations</strong><p className="text-slate-300">{data.interests.fixations}</p></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* RIGHT COLUMN */}
+                            <div className="lg:col-span-8 space-y-4 md:space-y-6">
+                                
+                                {/* Blurbs */}
+                                <div className="panel panel-fuchsia">
+                                    <div className="panel-header bg-fuchsia-500 text-white">Heather's Blurbs</div>
+                                    <div className="p-4 md:p-6">
+                                        <h2 className="retro-text text-xl md:text-2xl text-fuchsia-400 mb-2 border-b border-zinc-800 pb-1 md:pb-2">About me:</h2>
+                                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">{data.blurbs.about}</p>
+                                    </div>
+                                </div>
+
+                                {/* Experience */}
+                                <div className="panel panel-cyan">
+                                    <div className="panel-header bg-cyan-400 text-black">Professional Experience</div>
+                                    <div className="p-0 flex flex-col md:flex-row border-t border-zinc-800">
+                                        
+                                        <div className="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-zinc-800 bg-zinc-950 p-2 md:p-4 flex md:flex-col gap-2 overflow-x-auto md:overflow-y-auto hide-scrollbar touch-pan-x">
+                                            {data.jobs.map((job) => (
+                                                <div 
+                                                    key={job.id} 
+                                                    onClick={() => setActiveJobId(job.id)} 
+                                                    className={`shrink-0 w-[200px] md:w-auto cursor-pointer p-3 rounded border text-left transition-all ${activeJobId === job.id ? 'border-fuchsia-500 bg-fuchsia-500/10 border-l-4 md:border-l-4 md:border-b-1 border-b-4 md:border-b-fuchsia-500' : 'border-zinc-800 hover:border-cyan-500 hover:bg-cyan-500/10'}`}
+                                                >
+                                                    <div className="font-bold text-white text-[13px] md:text-sm truncate">{job.title}</div>
+                                                    <div className="text-[10px] md:text-xs text-zinc-500 mt-1 font-mono truncate">{job.dates}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <div className="w-full md:w-2/3 p-4 md:p-6 bg-zinc-900/50 min-h-[300px]">
+                                            {activeJob && (
+                                                <>
+                                                    <div className="mb-4 border-b border-zinc-800 pb-3 md:pb-4">
+                                                        <span className="bg-cyan-900 text-cyan-300 text-[10px] md:text-xs font-mono px-2 py-1 mb-2 inline-block uppercase tracking-widest">{activeJob.dates}</span>
+                                                        <h3 className="text-lg md:text-xl font-bold text-white mb-1 leading-tight">{activeJob.title}</h3>
+                                                        <p className="text-xs md:text-sm text-fuchsia-400 font-mono leading-tight">// {activeJob.company}</p>
+                                                    </div>
+            <ul className="space-y-3 md:space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                                        {activeJob.bullets.map((bullet, idx) => (
+                                                            <li key={idx} className="flex gap-2 md:gap-3 items-start">
+                                                                <span className="text-fuchsia-500 mt-0.5 text-base md:text-lg leading-none">‣</span>
+                                                                <span>{bullet}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Hardware */}
+                                <div className="panel panel-lime">
+                                    <div className="panel-header bg-lime-400 text-black">Strategic Hardware</div>
+                                    <div className="p-4 md:p-6">
+                                        <h3 className="retro-text text-lg md:text-xl text-lime-400 mb-3 md:mb-4 border-b border-zinc-800 pb-1">Technical Loadout</h3>
+                                        <div className="space-y-3 md:space-y-5 text-xs sm:text-sm">
+                                            <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-lime-500">
+                                                <strong className="text-white block mb-1 text-sm">💾 Data & Analytics:</strong>
+                                                <span className="text-slate-400 leading-relaxed">{data.competencies.data}</span>
+                                            </div>
+                                            <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-fuchsia-500">
+                                                <strong className="text-white block mb-1 text-sm">🎯 Strategic Skills:</strong>
+                                                <span className="text-slate-400 leading-relaxed">{data.competencies.strategy}</span>
+                                            </div>
+                                            <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-cyan-500">
+                                                <strong className="text-white block mb-1 text-sm">💻 Digital Platforms:</strong>
+                                                <span className="text-slate-400 leading-relaxed">{data.competencies.platforms}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
 
-                        <div className="w-full md:w-2/3 p-4 md:p-6 bg-zinc-900/50 min-h-[300px]">
-                          {activeJob ? (
-                            <>
-                              <div className="mb-4 border-b border-zinc-800 pb-3 md:pb-4">
-                                <span className="bg-cyan-900 text-cyan-300 text-[10px] md:text-xs font-mono px-2 py-1 mb-2 inline-block uppercase tracking-widest">{activeJob.dates}</span>
-                                <h3 className="text-lg md:text-xl font-bold text-white mb-1 leading-tight">{activeJob.title}</h3>
-                                <p className="text-xs md:text-sm text-fuchsia-400 font-mono leading-tight">// {activeJob.company}</p>
-
-                              </div>
-                              <ul className="space-y-3 md:space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
-                                {activeJob.bullets.map((bullet, idx) => (
-                                  <li key={idx} className="flex gap-2 md:gap-3 items-start">
-                                    <span className="text-fuchsia-500 mt-0.5 text-base md:text-lg leading-none">‣</span>
-                                    <span>{bullet}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </>
-                          ) : (<p className="italic text-zinc-500 text-sm">Select a role...</p>)}
-                        </div>
-                      </div>
+                        <footer className="mt-8 text-center text-[10px] md:text-xs text-zinc-600 retro-text">
+                            <p>&copy; {new Date().getFullYear()} Heather Rod. End of line.</p>
+                        </footer>
                     </div>
-
-                    {/* Competencies Section - Full Width, No Chart */}
-                    <div className="panel panel-lime">
-                      <div className="panel-header bg-lime-400 text-black">Strategic Hardware</div>
-                      <div className="p-4 md:p-6">
-                        <h3 className="retro-text text-lg md:text-xl text-lime-400 mb-3 md:mb-4 border-b border-zinc-800 pb-1">Technical Loadout</h3>
-                        <div className="space-y-3 md:space-y-5 text-xs sm:text-sm">
-                          <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-lime-500">
-                            <strong className="text-white block mb-1 text-sm">💾 Data & Analytics:</strong>
-                            <span className="text-slate-400 leading-relaxed">{data.competencies.data}</span>
-                          </div>
-                          <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-fuchsia-500">
-                            <strong className="text-white block mb-1 text-sm">🎯 Strategic Skills:</strong>
-                            <span className="text-slate-400 leading-relaxed">{data.competencies.strategy}</span>
-                          </div>
-                          <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-cyan-500">
-                            <strong className="text-white block mb-1 text-sm">💻 Digital Platforms:</strong>
-                            <span className="text-slate-400 leading-relaxed">{data.competencies.platforms}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-
-                <footer className="mt-8 text-center text-[10px] md:text-xs text-slate-500 retro-text no-print">
-                  <p>© {new Date().getFullYear()} Heather Rod. System operational.</p>
-                </footer>
-              </div>
-            </div>
-          );
+            );
         }
 
+        // --- RENDER APP ---
         const rootElement = document.getElementById('root');
         if(rootElement) {
             const root = ReactDOM.createRoot(rootElement);
@@ -296,7 +327,4 @@
         }
     </script>
 </body>
-</html>
-
-
-
+</html>                                      
