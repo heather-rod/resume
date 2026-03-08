@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Heather Rod | Y2K CMS</title>
     
     <!-- Tailwind CSS -->
@@ -11,38 +11,35 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- React & ReactDOM (Using Cloudflare for maximum mobile reliability) -->
+    <!-- React & ReactDOM -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
     
-    <!-- Babel (Translates React code for the browser) -->
+    <!-- Babel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.6/babel.min.js"></script>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
 </head>
-<body class="bg-black text-slate-200">
+<body class="bg-black text-slate-200 overflow-x-hidden w-full">
     
-    <!-- Fallback Error Catcher (Prevents white screens) -->
     <script>
         window.onerror = function(msg, url, lineNo) {
             document.getElementById('root').innerHTML = 
-                "<div style='color:#ff00ff; font-family:monospace; padding:20px; border:2px solid #ff00ff; margin:20px;'>" +
-                "<h2 style='font-size:24px; margin-bottom:10px;'>SYSTEM CRASH</h2>" +
+                "<div style='color:#ff00ff; font-family:monospace; padding:20px; border:2px solid #ff00ff; margin:10px; word-wrap: break-word;'>" +
+                "<h2 style='font-size:20px; margin-bottom:10px;'>SYSTEM CRASH</h2>" +
                 "<p><strong>Error:</strong> " + msg + "</p>" +
                 "<p><strong>Line:</strong> " + lineNo + "</p>" +
-                "<p style='margin-top:20px; color:#cbd5e1;'>Your mobile browser might be blocking the scripts. Try turning off strict ad-blockers or try on a computer.</p>" +
                 "</div>";
             return false;
         };
     </script>
 
     <div id="root">
-        <!-- Loading State -->
-        <div style="color: #00ffff; font-family: 'VT323', monospace; padding: 40px; font-size: 24px; text-align: center; border: 2px solid #00ffff; margin: 20px; box-shadow: 0 0 10px rgba(0,255,255,0.5);">
+        <div style="color: #00ffff; font-family: 'VT323', monospace; padding: 40px 20px; font-size: 24px; text-align: center; border: 2px solid #00ffff; margin: 20px; box-shadow: 0 0 10px rgba(0,255,255,0.5);">
             INITIALIZING SYSTEM...<br><br>
-            <span style="font-size: 16px; color: #cbd5e1; font-family: sans-serif;">
-                (If this screen stays for more than 5 seconds, your browser is blocking the application scripts.)
+            <span style="font-size: 14px; color: #cbd5e1; font-family: sans-serif;">
+                (Loading mobile interface...)
             </span>
         </div>
     </div>
@@ -50,15 +47,27 @@
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
 
-        // Reusable Input Component (Placed outside App to prevent focus loss)
+        // Reusable Input Component 
         function CyberInput({ label, name, value, onChange, type="text" }) {
             return (
                 <div className="mb-4">
                     <label className="block text-cyan-400 retro-text text-lg mb-1">{label}</label>
                     {type === "textarea" ? (
-                        <textarea name={name} value={value} onChange={onChange} rows="4" className="w-full bg-zinc-950 border border-zinc-700 text-white p-2 font-sans text-sm focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400" />
+                        <textarea 
+                            name={name} 
+                            value={value} 
+                            onChange={onChange} 
+                            rows="4" 
+                            className="w-full bg-zinc-950 border border-zinc-700 text-white p-3 font-sans text-base focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded-none" 
+                        />
                     ) : (
-                        <input type="text" name={name} value={value} onChange={onChange} className="w-full bg-zinc-950 border border-zinc-700 text-white p-2 font-sans text-sm focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400" />
+                        <input 
+                            type="text" 
+                            name={name} 
+                            value={value} 
+                            onChange={onChange} 
+                            className="w-full bg-zinc-950 border border-zinc-700 text-white p-3 font-sans text-base focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded-none" 
+                        />
                     )}
                 </div>
             );
@@ -88,7 +97,7 @@
               {
                 id: "job-1",
                 title: "Communications Analyst",
-                company: "State Farm | Corporate Communications",
+                company: "State Farm | Corporate Comms",
                 dates: "05.2024 – Present",
                 bullets: [
                   "Developed Power BI and Adobe Analytics dashboards to enable greater understanding of audiences and content performance, empowering peers to independently and confidently apply data and insights.",
@@ -98,7 +107,7 @@
               },
               {
                 id: "job-2",
-                title: "Public Affairs Comms Specialist",
+                title: "Public Affairs Specialist",
                 company: "State Farm",
                 dates: "07.2023 – 05.2024",
                 bullets: [
@@ -114,7 +123,7 @@
                 bullets: [
                   "Connected 43,000 farmers to the work of the organization through multiple digital channels, pioneering digital marketing and analytics standards and practices among state soybean associations.",
                   "Coordinated, directed, and collaborated with external contractors and internal stakeholders on multiple concurrent organizational and departmental projects, delivering visible value to constituents.",
-                  "Launched and nurtured internship program and provided company-wide HR/IT services during leadership vacancies, demonstrating adaptability and accountability through periods of disruption and uncertainty."
+                  "Launched and nurtured internship program and provided company-wide HR/IT services during leadership vacancies."
                 ]
               },
               {
@@ -148,7 +157,7 @@
           });
 
           return (
-            <div className="min-h-screen bg-black text-slate-200 selection:bg-cyan-400 selection:text-black pb-12">
+            <div className="min-h-screen bg-black text-slate-200 selection:bg-cyan-400 selection:text-black pb-12 overflow-x-hidden w-full">
               <style dangerouslySetInnerHTML={{__html: `
                 body {
                   background-image: 
@@ -156,6 +165,7 @@
                     linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
                   background-size: 20px 20px;
                   background-color: #000;
+                  overflow-x: hidden;
                 }
                 .retro-text { font-family: 'VT323', monospace; letter-spacing: 1px; }
                 .inter-text { font-family: 'Inter', sans-serif; }
@@ -163,24 +173,31 @@
                 .panel-cyan { border-color: #00ffff; box-shadow: 2px 2px 0px #00ffff; }
                 .panel-fuchsia { border-color: #ff00ff; box-shadow: 2px 2px 0px #ff00ff; }
                 .panel-lime { border-color: #39ff14; box-shadow: 2px 2px 0px #39ff14; }
-                .panel-header { padding: 4px 8px; font-family: 'VT323', monospace; font-size: 1.25rem; text-transform: uppercase; }
-                ::-webkit-scrollbar { width: 10px; }
-                ::-webkit-scrollbar-track { background: #000; border-left: 1px solid #00ffff; }
+                .panel-header { padding: 4px 8px; font-family: 'VT323', monospace; font-size: 1.1rem; text-transform: uppercase; }
+                @media (min-width: 768px) { .panel-header { font-size: 1.25rem; } }
+                
+                /* Custom Scrollbar */
+                ::-webkit-scrollbar { width: 6px; height: 6px; }
+                ::-webkit-scrollbar-track { background: #000; border-left: 1px solid #00ffff; border-top: 1px solid #00ffff; }
                 ::-webkit-scrollbar-thumb { background: #ff00ff; }
                 ::-webkit-scrollbar-thumb:hover { background: #00ffff; }
                 .blink { animation: blinker 1.5s linear infinite; }
                 @keyframes blinker { 50% { opacity: 0; } }
+
+                /* Prevent mobile zoom on inputs */
+                input, textarea { font-size: 16px !important; }
               `}} />
 
-              <div className="p-4 md:p-8 max-w-7xl mx-auto">
-                <header className="panel panel-cyan mb-6 bg-black flex flex-col md:flex-row justify-between items-center p-4">
-                  <div className="text-2xl md:text-4xl text-cyan-400 retro-text uppercase tracking-widest drop-shadow-[0_0_5px_rgba(0,255,255,0.8)]">
-                    █ Heather_Rod.exe <span className="blink">_</span>
+              <div className="p-2 sm:p-4 md:p-8 max-w-7xl mx-auto w-full">
+                {/* Header */}
+                <header className="panel panel-cyan mb-4 md:mb-6 bg-black flex flex-col md:flex-row justify-between items-center p-3 md:p-4 gap-3 md:gap-0">
+                  <div className="text-xl sm:text-2xl md:text-4xl text-cyan-400 retro-text uppercase tracking-widest drop-shadow-[0_0_5px_rgba(0,255,255,0.8)] text-center md:text-left">
+                    █ Heather_Rod.exe<span className="blink">_</span>
                   </div>
-                  <div className="mt-4 md:mt-0 flex gap-4">
+                  <div className="flex w-full md:w-auto">
                     <button 
                       onClick={() => setIsEditing(!isEditing)}
-                      className={`retro-text px-4 py-1 text-xl border-2 transition-colors ${isEditing ? 'border-lime-400 text-lime-400 bg-lime-400/20' : 'border-fuchsia-400 text-fuchsia-400 hover:bg-fuchsia-400/20'}`}
+                      className={`w-full md:w-auto retro-text px-3 py-2 md:py-1 text-sm sm:text-lg md:text-xl border-2 transition-colors ${isEditing ? 'border-lime-400 text-lime-400 bg-lime-400/20' : 'border-fuchsia-400 text-fuchsia-400 hover:bg-fuchsia-400/20'}`}
                     >
                       {isEditing ? '[ SWITCH TO VIEW MODE ]' : '[ ENABLE EDIT MODE ]'}
                     </button>
@@ -189,7 +206,7 @@
 
                 {isEditing ? <Editor data={data} setData={setData} /> : <Viewer data={data} />}
 
-                <footer className="mt-8 text-center text-xs text-slate-500 retro-text no-print">
+                <footer className="mt-8 text-center text-[10px] md:text-xs text-slate-500 retro-text no-print">
                   <p>&copy; {new Date().getFullYear()} Heather Rod. System operational.</p>
                 </footer>
               </div>
@@ -213,7 +230,7 @@
                     const words = str.split(' ');
                     let lines = [], current = '';
                     words.forEach(w => {
-                        if((current + w).length > 14) { lines.push(current); current = w + ' '; } 
+                        if((current + w).length > 12) { lines.push(current); current = w + ' '; } 
                         else { current += w + ' '; }
                     });
                     if(current) lines.push(current.trim());
@@ -242,7 +259,7 @@
                       r: {
                         angleLines: { color: 'rgba(255,255,255,0.1)' },
                         grid: { color: 'rgba(255,255,255,0.1)' },
-                        pointLabels: { font: { size: 11, family: "'VT323', monospace" }, color: '#39ff14' },
+                        pointLabels: { font: { size: 10, family: "'VT323', monospace" }, color: '#39ff14' },
                         ticks: { display: false, min: 0, max: 100 }
                       }
                     },
@@ -257,21 +274,29 @@
           }, [data]);
 
           return (
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 inter-text">
-              <div className="lg:col-span-4 space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 inter-text">
+              {/* LEFT COLUMN */}
+              <div className="lg:col-span-4 space-y-4 md:space-y-6">
+                
                 <div className="panel panel-fuchsia p-4 text-center">
-                  <h1 className="text-3xl text-white retro-text mb-4">{data.profile.name}</h1>
-                  <div className="w-48 h-48 mx-auto border-4 border-fuchsia-500 mb-4 flex items-center justify-center bg-zinc-900 text-fuchsia-500 text-6xl shadow-[0_0_15px_rgba(255,0,255,0.5)]">👻</div>
-                  <p className="retro-text text-xl text-cyan-400 mb-2">"{data.profile.tagline}"</p>
-                  <p className="text-sm font-bold text-lime-400">♀ {data.profile.gender} | {data.profile.location}</p>
+                  <h1 className="text-2xl sm:text-3xl text-white retro-text mb-3 md:mb-4">{data.profile.name}</h1>
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 mx-auto border-2 md:border-4 border-fuchsia-500 mb-3 md:mb-4 flex items-center justify-center bg-zinc-900 text-fuchsia-500 text-4xl md:text-6xl shadow-[0_0_10px_rgba(255,0,255,0.5)]">
+                    👻
+                  </div>
+                  <p className="retro-text text-lg sm:text-xl text-cyan-400 mb-2">"{data.profile.tagline}"</p>
+                  <p className="text-xs sm:text-sm font-bold text-lime-400">♀ {data.profile.gender} | {data.profile.location}</p>
                 </div>
 
                 <div className="panel panel-cyan">
                   <div className="panel-header bg-cyan-400 text-black">Contacting Heather</div>
-                  <div className="p-4 grid grid-cols-1 gap-2 text-sm font-medium">
-                    <div className="border border-zinc-700 p-2 flex items-center gap-3"><span className="text-cyan-400 text-lg">✉️</span> {data.profile.email}</div>
-                    <div className="border border-zinc-700 p-2 flex items-center gap-3"><span className="text-cyan-400 text-lg">📞</span> {data.profile.phone}</div>
-                    <a href="Heather_Rod_Resume.pdf" target="_blank" className="mt-2 block border border-fuchsia-500 bg-fuchsia-500/10 text-fuchsia-400 p-2 text-center hover:bg-fuchsia-500 hover:text-white transition-colors retro-text text-lg uppercase">
+                  <div className="p-3 md:p-4 flex flex-col gap-2 text-xs sm:text-sm font-medium">
+                    <div className="border border-zinc-700 p-2 flex items-center gap-2 md:gap-3 truncate">
+                      <span className="text-cyan-400 text-base md:text-lg">✉️</span> {data.profile.email}
+                    </div>
+                    <div className="border border-zinc-700 p-2 flex items-center gap-2 md:gap-3">
+                      <span className="text-cyan-400 text-base md:text-lg">📞</span> {data.profile.phone}
+                    </div>
+                    <a href="Heather_Rod_Resume.pdf" target="_blank" className="mt-2 block border border-fuchsia-500 bg-fuchsia-500/10 text-fuchsia-400 p-3 text-center hover:bg-fuchsia-500 hover:text-white transition-colors retro-text text-base md:text-lg uppercase">
                       [ Download PDF ]
                     </a>
                   </div>
@@ -279,50 +304,187 @@
 
                 <div className="panel panel-lime">
                   <div className="panel-header bg-lime-400 text-black">Interests & Details</div>
-                  <div className="p-4 text-sm space-y-4">
-                    <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-lg">General</strong><p className="text-slate-300 leading-relaxed">{data.interests.general}</p></div>
-                    <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-lg">Hobbies</strong><p className="text-slate-300">{data.interests.hobbies}</p></div>
-                    <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-lg">Professional Fixations</strong><p className="text-slate-300">{data.interests.fixations}</p></div>
+                  <div className="p-3 md:p-4 text-xs sm:text-sm space-y-3 md:space-y-4">
+                    <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-base md:text-lg">General</strong><p className="text-slate-300 leading-relaxed">{data.interests.general}</p></div>
+                    <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-base md:text-lg">Hobbies</strong><p className="text-slate-300">{data.interests.hobbies}</p></div>
+                    <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-base md:text-lg">Professional Fixations</strong><p className="text-slate-300">{data.interests.fixations}</p></div>
                   </div>
                 </div>
               </div>
 
-              <div className="lg:col-span-8 space-y-6">
+              {/* RIGHT COLUMN */}
+              <div className="lg:col-span-8 space-y-4 md:space-y-6">
+                
                 <div className="panel panel-fuchsia">
                   <div className="panel-header bg-fuchsia-500 text-white">Heather's Blurbs</div>
-                  <div className="p-6">
-                    <h2 className="retro-text text-2xl text-fuchsia-400 mb-2 border-b border-zinc-800 pb-2">About me:</h2>
-                    <p className="text-sm text-slate-200 leading-relaxed mb-6 font-medium">{data.blurbs.about}</p>
-                    <h2 className="retro-text text-2xl text-fuchsia-400 mb-2 border-b border-zinc-800 pb-2">Who I'd like to meet:</h2>
-                    <p className="text-sm text-slate-200 leading-relaxed font-medium">{data.blurbs.target}</p>
+                  <div className="p-4 md:p-6">
+                    <h2 className="retro-text text-xl md:text-2xl text-fuchsia-400 mb-2 border-b border-zinc-800 pb-1 md:pb-2">About me:</h2>
+                    <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4 md:mb-6 font-medium">{data.blurbs.about}</p>
+                    <h2 className="retro-text text-xl md:text-2xl text-fuchsia-400 mb-2 border-b border-zinc-800 pb-1 md:pb-2">Who I'd like to meet:</h2>
+                    <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">{data.blurbs.target}</p>
                   </div>
                 </div>
 
                 <div className="panel panel-cyan">
                   <div className="panel-header bg-cyan-400 text-black">Professional Experience</div>
                   <div className="p-0 flex flex-col md:flex-row border-t border-zinc-800">
-                    <div className="w-full md:w-2/5 border-b md:border-b-0 md:border-r border-zinc-800 bg-zinc-950 p-4 space-y-2 max-h-[450px] overflow-y-auto">
+                    
+                    {/* Horizontal Scroll on Mobile, Vertical on Desktop */}
+                    <div className="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-zinc-800 bg-zinc-950 p-2 md:p-4 flex md:flex-col gap-2 overflow-x-auto md:overflow-y-auto hide-scrollbar touch-pan-x">
                       {data.jobs.map((job) => (
-                        <div key={job.id} onClick={() => setActiveJobId(job.id)} className={`cursor-pointer p-3 rounded border text-left transition-all ${activeJobId === job.id ? 'border-fuchsia-500 bg-fuchsia-500/10 border-l-4' : 'border-zinc-800 hover:border-cyan-500 hover:bg-cyan-500/10'}`}>
-                          <div className="font-bold text-white text-sm">{job.title}</div>
-                          <div className="text-xs text-zinc-500 mt-1 font-mono">{job.dates}</div>
+                        <div 
+                          key={job.id} 
+                          onClick={() => setActiveJobId(job.id)} 
+                          className={`shrink-0 w-[200px] md:w-auto cursor-pointer p-3 rounded border text-left transition-all ${activeJobId === job.id ? 'border-fuchsia-500 bg-fuchsia-500/10 border-l-4 md:border-l-4 md:border-b-1 border-b-4 md:border-b-fuchsia-500' : 'border-zinc-800 hover:border-cyan-500 hover:bg-cyan-500/10'}`}
+                        >
+                          <div className="font-bold text-white text-[13px] md:text-sm truncate">{job.title}</div>
+                          <div className="text-[10px] md:text-xs text-zinc-500 mt-1 font-mono truncate">{job.dates}</div>
                         </div>
                       ))}
                     </div>
-                    <div className="w-full md:w-3/5 p-6 bg-zinc-900/50 min-h-[400px]">
+
+                    <div className="w-full md:w-2/3 p-4 md:p-6 bg-zinc-900/50 min-h-[300px]">
                       {activeJob ? (
                         <>
-                          <div className="mb-4 border-b border-zinc-800 pb-4">
-                            <span className="bg-cyan-900 text-cyan-300 text-xs font-mono px-2 py-1 mb-2 inline-block uppercase tracking-widest">{activeJob.dates}</span>
-                            <h3 className="text-xl font-bold text-white mb-1">{activeJob.title}</h3>
-                            <p className="text-sm text-fuchsia-400 font-mono">// {activeJob.company}</p>
+                          <div className="mb-4 border-b border-zinc-800 pb-3 md:pb-4">
+                            <span className="bg-cyan-900 text-cyan-300 text-[10px] md:text-xs font-mono px-2 py-1 mb-2 inline-block uppercase tracking-widest">{activeJob.dates}</span>
+                            <h3 className="text-lg md:text-xl font-bold text-white mb-1 leading-tight">{activeJob.title}</h3>
+                            <p className="text-xs md:text-sm text-fuchsia-400 font-mono leading-tight">// {activeJob.company}</p>
                           </div>
-                          <ul className="space-y-4 text-sm text-slate-300 leading-relaxed">
+                          <ul className="space-y-3 md:space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
                             {activeJob.bullets.map((bullet, idx) => (
-                              <li key={idx} className="flex gap-3 items-start">
-                                <span className="text-fuchsia-500 mt-0.5 text-lg leading-none">‣</span><span>{bullet}</span>
+                              <li key={idx} className="flex gap-2 md:gap-3 items-start">
+                                <span className="text-fuchsia-500 mt-0.5 text-base md:text-lg leading-none">‣</span>
+                                <span>{bullet}</span>
                               </li>
                             ))}
                           </ul>
                         </>
-                      ) : (<p className="italic t
+                      ) : (<p className="italic text-zinc-500 text-sm">Select a role...</p>)}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="panel panel-lime">
+                  <div className="panel-header bg-lime-400 text-black">Strategic Hardware</div>
+                  <div className="p-4 md:p-6 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                    <div>
+                      <h3 className="retro-text text-lg md:text-xl text-lime-400 mb-3 md:mb-4 border-b border-zinc-800 pb-1">Technical Loadout</h3>
+                      <div className="space-y-3 md:space-y-4 text-xs sm:text-sm">
+                        <div><strong className="text-white block mb-0.5 md:mb-1">💾 Data & Analytics:</strong><span className="text-slate-400">{data.competencies.data}</span></div>
+                        <div><strong className="text-white block mb-0.5 md:mb-1">🎯 Strategic Skills:</strong><span className="text-slate-400">{data.competencies.strategy}</span></div>
+                        <div><strong className="text-white block mb-0.5 md:mb-1">💻 Digital Platforms:</strong><span className="text-slate-400">{data.competencies.platforms}</span></div>
+                      </div>
+                    </div>
+                    <div className="flex flex-col justify-center items-center">
+                      <div className="w-full max-w-[240px] md:max-w-[300px] h-[200px] md:h-[250px] relative"><canvas ref={chartRef}></canvas></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        } 
+        // --- EDITOR COMPONENT ---
+        function Editor({ data, setData }) {
+          const handleProfileChange = (e) => setData({ ...data, profile: { ...data.profile, [e.target.name]: e.target.value } });
+          const handleInterestChange = (e) => setData({ ...data, interests: { ...data.interests, [e.target.name]: e.target.value } });
+          const handleBlurbChange = (e) => setData({ ...data, blurbs: { ...data.blurbs, [e.target.name]: e.target.value } });
+          const handleCompetencyChange = (e) => setData({ ...data, competencies: { ...data.competencies, [e.target.name]: e.target.value } });
+          
+          const handleJobChange = (index, field, value) => { const newJobs = [...data.jobs]; newJobs[index][field] = value; setData({ ...data, jobs: newJobs }); };
+          const handleBulletChange = (jobIndex, bulletIndex, value) => { const newJobs = [...data.jobs]; newJobs[jobIndex].bullets[bulletIndex] = value; setData({ ...data, jobs: newJobs }); };
+          
+          const addBullet = (jobIndex) => { const newJobs = [...data.jobs]; newJobs[jobIndex].bullets.push(""); setData({ ...data, jobs: newJobs }); };
+          const removeBullet = (jobIndex, bulletIndex) => { const newJobs = [...data.jobs]; newJobs[jobIndex].bullets.splice(bulletIndex, 1); setData({ ...data, jobs: newJobs }); };
+          
+          const addJob = () => { const newJob = { id: `job-${Date.now()}`, title: "New Role", company: "Company", dates: "Dates", bullets: [""] }; setData({ ...data, jobs: [newJob, ...data.jobs] }); };
+          const removeJob = (index) => { const newJobs = [...data.jobs]; newJobs.splice(index, 1); setData({ ...data, jobs: newJobs }); };
+
+          return (
+            <div className="space-y-6 md:space-y-8 pb-12 inter-text">
+              <div className="bg-zinc-900 border border-lime-400 p-3 md:p-4 retro-text text-lime-400 text-base md:text-xl text-center shadow-[0_0_10px_rgba(57,255,20,0.2)] leading-snug">
+                SYSTEM OVERRIDE: CMS MODE ENGAGED. <br/>
+                <span className="text-[10px] md:text-sm text-zinc-400 inter-text block mt-2">Changes apply immediately to View Mode. Must update source code to save permanently.</span>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                  {/* Left Col Edit */}
+                <div className="space-y-6 md:space-y-8">
+                  <div className="panel panel-cyan p-4 md:p-6">
+                    <h2 className="retro-text text-xl md:text-2xl text-cyan-400 border-b border-zinc-800 pb-2 mb-4">Edit Profile Info</h2>
+                    <CyberInput label="Full Name" name="name" value={data.profile.name} onChange={handleProfileChange} />
+                    <CyberInput label="Tagline" name="tagline" value={data.profile.tagline} onChange={handleProfileChange} />
+                    <CyberInput label="Location" name="location" value={data.profile.location} onChange={handleProfileChange} />
+                    <CyberInput label="Email" name="email" value={data.profile.email} onChange={handleProfileChange} />
+                    <CyberInput label="Phone" name="phone" value={data.profile.phone} onChange={handleProfileChange} />
+                  </div>
+                  
+                  <div className="panel panel-fuchsia p-4 md:p-6">
+                    <h2 className="retro-text text-xl md:text-2xl text-fuchsia-400 border-b border-zinc-800 pb-2 mb-4">Edit Blurbs</h2>
+                    <CyberInput type="textarea" label="About Me" name="about" value={data.blurbs.about} onChange={handleBlurbChange} />
+                    <CyberInput type="textarea" label="Target Audience" name="target" value={data.blurbs.target} onChange={handleBlurbChange} />
+                  </div>
+                  
+                  <div className="panel panel-lime p-4 md:p-6">
+                    <h2 className="retro-text text-xl md:text-2xl text-lime-400 border-b border-zinc-800 pb-2 mb-4">Edit Interests</h2>
+                    <CyberInput type="textarea" label="General Outlook" name="general" value={data.interests.general} onChange={handleInterestChange} />
+                    <CyberInput type="textarea" label="Hobbies" name="hobbies" value={data.interests.hobbies} onChange={handleInterestChange} />
+                    <CyberInput type="textarea" label="Professional Fixations" name="fixations" value={data.interests.fixations} onChange={handleInterestChange} />
+                  </div>
+                  
+                  <div className="panel panel-cyan p-4 md:p-6">
+                    <h2 className="retro-text text-xl md:text-2xl text-cyan-400 border-b border-zinc-800 pb-2 mb-4">Edit Competencies</h2>
+                    <CyberInput type="textarea" label="Data & Analytics" name="data" value={data.competencies.data} onChange={handleCompetencyChange} />
+                    <CyberInput type="textarea" label="Strategic Skills" name="strategy" value={data.competencies.strategy} onChange={handleCompetencyChange} />
+                    <CyberInput type="textarea" label="Digital Platforms" name="platforms" value={data.competencies.platforms} onChange={handleCompetencyChange} />
+                  </div>
+                </div>
+
+                {/* Right Col Edit: JOBS */}
+                <div className="space-y-6 md:space-y-8">
+                  <div className="panel panel-fuchsia p-4 md:p-6">
+                    <div className="flex justify-between items-center border-b border-zinc-800 pb-2 mb-4">
+                      <h2 className="retro-text text-xl md:text-2xl text-fuchsia-400">Edit Career History</h2>
+                      <button onClick={addJob} className="bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-xs px-3 py-2 md:py-1 font-bold rounded">+ ADD ROLE</button>
+                    </div>
+                    
+                    <div className="space-y-6 md:space-y-8">
+                      {data.jobs.map((job, jIdx) => (
+                        <div key={job.id} className="bg-zinc-950 p-3 md:p-4 border border-zinc-800 relative mt-4">
+                          <button onClick={() => removeJob(jIdx)} className="absolute top-2 right-2 text-red-500 text-xs hover:text-red-400 retro-text bg-black px-2 py-1 border border-red-900">[ DELETE ]</button>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4 mt-6">
+                            <div><label className="block text-xs text-zinc-500 uppercase mb-1">Job Title</label><input type="text" value={job.title} onChange={(e) => handleJobChange(jIdx, 'title', e.target.value)} className="w-full bg-black border border-zinc-700 text-white p-2 text-base md:text-sm focus:border-fuchsia-400 outline-none" /></div>
+                            <div><label className="block text-xs text-zinc-500 uppercase mb-1">Company</label><input type="text" value={job.company} onChange={(e) => handleJobChange(jIdx, 'company', e.target.value)} className="w-full bg-black border border-zinc-700 text-white p-2 text-base md:text-sm focus:border-fuchsia-400 outline-none" /></div>
+                            <div className="md:col-span-2"><label className="block text-xs text-zinc-500 uppercase mb-1">Dates</label><input type="text" value={job.dates} onChange={(e) => handleJobChange(jIdx, 'dates', e.target.value)} className="w-full bg-black border border-zinc-700 text-white p-2 text-base md:text-sm focus:border-fuchsia-400 outline-none" /></div>
+                          </div>
+
+                          <div className="mt-4 border-t border-zinc-800 pt-4">
+                            <label className="block text-xs text-zinc-500 uppercase mb-2">Bullet Points</label>
+                            {job.bullets.map((bullet, bIdx) => (
+                              <div key={bIdx} className="flex gap-2 mb-3">
+                                <textarea value={bullet} onChange={(e) => handleBulletChange(jIdx, bIdx, e.target.value)} className="flex-1 bg-black border border-zinc-700 text-slate-300 p-2 text-base md:text-sm focus:border-fuchsia-400 outline-none h-20" />
+                                <button onClick={() => removeBullet(jIdx, bIdx)} className="bg-zinc-800 hover:bg-red-900/50 text-zinc-300 hover:text-red-400 px-4 font-bold transition-colors text-lg">X</button>
+                              </div>
+                            ))}
+                            <button onClick={() => addBullet(jIdx)} className="text-sm md:text-xs text-cyan-400 hover:text-cyan-300 mt-2 font-mono border border-cyan-900 px-3 py-1 bg-cyan-900/20">+ Add Bullet</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        const rootElement = document.getElementById('root');
+        if(rootElement) {
+            const root = ReactDOM.createRoot(rootElement);
+            root.render(<App />);
+        }
+    </script>
+</body>
+</html>
