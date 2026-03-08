@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -54,17 +54,14 @@
                 email: "rodheather23@gmail.com"
             },
             interests: {
-                general: "I am a highly creative analyst, chaos coordinator, and professional cat wrangler. When I'm not untangling complex data or communications strategies, I'm finding order in the noise.",
-                hobbies: "Competitive Powerlifting, Cooking & Baking, Deep-Dive Reading.",
-                fixations: "Creative problem solving, behavioral psychology, and mapping organizational dynamics."
+                hobbies: "Competitive Powerlifting, Cooking & Baking, Deep-Dive Reading."
             },
             links: {
                 storygraph: "https://app.thestorygraph.com/profile/haterrod",
                 spotify: "https://open.spotify.com/user/1228970516?si=9khD3RgCR-eu_uZXzINy_g"
             },
             blurbs: {
-                about: "I am an innovative communications analyst championing data literacy and user-centric strategy. I have proven success applying human-centered design to audience insights, developing intuitive analytics dashboards, and pioneering approaches that drive personalized, transparent employee engagement and transform corporate communication culture.",
-                target: "Future-focused deep thinkers looking to bridge the gap between qualitative storytelling and hard quantitative metrics. I thrive in environments that require strategic foresight and the ability to turn complex stakeholder networks into streamlined, sustainable systems."
+                about: "I am an innovative communications analyst championing data literacy and user-centric strategy. I have proven success applying human-centered design to audience insights, developing intuitive analytics dashboards, and pioneering approaches that drive personalized, transparent employee engagement and transform corporate communication culture."
             },
             jobs: [
                 {
@@ -124,7 +121,7 @@
             ],
             competencies: {
                 data: "Power BI, Adobe Analytics, Excel",
-                strategy: "Design Thinking, User Research, Audience Demographics, Sentiment, Measurement",
+                strategy: "Design Thinking, User Research, Audience Demographics, Creative Problem Solving, Measurement",
                 platforms: "Drupal, WordPress, SharePoint, Mailchimp, HubSpot, Sprout, Staffbase, Viva Engage"
             }
         };
@@ -152,6 +149,7 @@
                         .panel-lime { border-color: #39ff14; box-shadow: 2px 2px 0px #39ff14; }
                         .panel-yellow { border-color: #facc15; box-shadow: 2px 2px 0px #facc15; }
                         .panel-header { padding: 4px 8px; font-family: 'VT323', monospace; font-size: 1.1rem; text-transform: uppercase; }
+                        @media (min-width: 768px) { .panel-header { font-size: 1.25rem; } }
                         
                         ::-webkit-scrollbar { width: 6px; height: 6px; }
                         ::-webkit-scrollbar-track { background: #000; border-left: 1px solid #00ffff; border-top: 1px solid #00ffff; }
@@ -164,18 +162,15 @@
                     <div className="p-2 sm:p-4 md:p-8 max-w-7xl mx-auto w-full">
                         
                         {/* Global Header */}
-                        <header className="mb-4 md:mb-6">
-                            <div className="panel panel-cyan bg-black p-3 md:p-4 flex flex-col md:flex-row justify-between items-center gap-3">
-                                <div className="text-2xl sm:text-3xl md:text-4xl text-cyan-400 retro-text uppercase tracking-widest drop-shadow-[0_0_5px_rgba(0,255,255,0.8)]">
-                                    █ H8R.ROD_OS<span className="blink">_</span>
-                                </div>
-                                <div className="text-xs md:text-sm font-mono text-zinc-400">
-                                    SYS.STATUS: <span className="text-lime-400 font-bold">ONLINE</span> // ROLE: MACHINE
-                                </div>
+                        <header className="panel panel-cyan mb-4 md:mb-6 bg-black flex flex-col md:flex-row justify-center md:justify-start items-center p-3 md:p-4">
+                            <div className="text-xl sm:text-2xl md:text-4xl text-cyan-400 retro-text uppercase tracking-widest drop-shadow-[0_0_5px_rgba(0,255,255,0.8)] text-center md:text-left">
+                                █ Heather_Rod.exe<span className="blink">_</span>
                             </div>
                         </header>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 inter-text">
+                        {/* Top Main Section */}
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 inter-text mb-4 md:mb-6">
+                            
                             {/* LEFT COLUMN */}
                             <div className="lg:col-span-4 space-y-4 md:space-y-6">
                                 
@@ -197,39 +192,16 @@
                                             <span className="text-cyan-400 text-base md:text-lg group-hover:drop-shadow-[0_0_5px_rgba(0,255,255,0.8)]">✉️</span> {data.profile.email}
                                         </a>
                                         <a href="Heather_Rod_Resume.pdf" target="_blank" className="mt-2 block border border-fuchsia-500 bg-fuchsia-500/10 text-fuchsia-400 p-3 text-center hover:bg-fuchsia-500 hover:text-white transition-colors retro-text text-base md:text-lg uppercase">
-                                            [ Download PDF ]
+[ Download PDF ]
                                         </a>
                                     </div>
                                 </div>
 
-                                {/* External Directories (New Links) */}
-                                <div className="panel panel-yellow">
-                                    <div className="panel-header bg-yellow-400 text-black">External Directories</div>
-                                    <div className="p-3 md:p-4 flex flex-col gap-3 text-xs sm:text-sm font-medium">
-                                        <a href={data.links.storygraph} target="_blank" className="border border-zinc-700 p-2 flex items-center gap-3 truncate hover:border-yellow-400 hover:text-yellow-400 transition-colors cursor-pointer bg-zinc-950">
-                                            <span className="text-yellow-400 text-xl">📚</span> 
-                                            <div>
-                                                <div className="text-white">StoryGraph</div>
-                                                <div className="text-[10px] text-zinc-500 font-mono">@haterrod</div>
-                                            </div>
-                                        </a>
-                                        <a href={data.links.spotify} target="_blank" className="border border-zinc-700 p-2 flex items-center gap-3 truncate hover:border-lime-400 hover:text-lime-400 transition-colors cursor-pointer bg-zinc-950">
-                                            <span className="text-lime-400 text-xl">🎵</span> 
-                                            <div>
-                                                <div className="text-white">Spotify</div>
-                                                <div className="text-[10px] text-zinc-500 font-mono">Playlists & Vibes</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                {/* Interests */}
-                                <div className="panel panel-lime">
-                                    <div className="panel-header bg-lime-400 text-black">Interests & Details</div>
-                                    <div className="p-3 md:p-4 text-xs sm:text-sm space-y-3 md:space-y-4">
-                                        <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-base md:text-lg">General</strong><p className="text-slate-300 leading-relaxed">{data.interests.general}</p></div>
-                                        <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-base md:text-lg">Hobbies</strong><p className="text-slate-300">{data.interests.hobbies}</p></div>
-                                        <div><strong className="text-lime-400 font-bold block mb-1 retro-text text-base md:text-lg">Professional Fixations</strong><p className="text-slate-300">{data.interests.fixations}</p></div>
+                                {/* About Me / Blurbs */}
+                                <div className="panel panel-fuchsia">
+                                    <div className="panel-header bg-fuchsia-500 text-white">About Me</div>
+                                    <div className="p-4 md:p-6">
+                                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">{data.blurbs.about}</p>
                                     </div>
                                 </div>
                             </div>
@@ -237,20 +209,12 @@
                             {/* RIGHT COLUMN */}
                             <div className="lg:col-span-8 space-y-4 md:space-y-6">
                                 
-                                {/* Blurbs */}
-                                <div className="panel panel-fuchsia">
-                                    <div className="panel-header bg-fuchsia-500 text-white">Heather's Blurbs</div>
-                                    <div className="p-4 md:p-6">
-                                        <h2 className="retro-text text-xl md:text-2xl text-fuchsia-400 mb-2 border-b border-zinc-800 pb-1 md:pb-2">About me:</h2>
-                                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">{data.blurbs.about}</p>
-                                    </div>
-                                </div>
-
                                 {/* Experience */}
                                 <div className="panel panel-cyan">
                                     <div className="panel-header bg-cyan-400 text-black">Professional Experience</div>
                                     <div className="p-0 flex flex-col md:flex-row border-t border-zinc-800">
                                         
+                                        {/* Horizontal Scroll on Mobile, Vertical on Desktop */}
                                         <div className="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-zinc-800 bg-zinc-950 p-2 md:p-4 flex md:flex-col gap-2 overflow-x-auto md:overflow-y-auto hide-scrollbar touch-pan-x">
                                             {data.jobs.map((job) => (
                                                 <div 
@@ -272,7 +236,7 @@
                                                         <h3 className="text-lg md:text-xl font-bold text-white mb-1 leading-tight">{activeJob.title}</h3>
                                                         <p className="text-xs md:text-sm text-fuchsia-400 font-mono leading-tight">// {activeJob.company}</p>
                                                     </div>
-            <ul className="space-y-3 md:space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                                    <ul className="space-y-3 md:space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
                                                         {activeJob.bullets.map((bullet, idx) => (
                                                             <li key={idx} className="flex gap-2 md:gap-3 items-start">
                                                                 <span className="text-fuchsia-500 mt-0.5 text-base md:text-lg leading-none">‣</span>
@@ -290,7 +254,6 @@
                                 <div className="panel panel-lime">
                                     <div className="panel-header bg-lime-400 text-black">Strategic Hardware</div>
                                     <div className="p-4 md:p-6">
-                                        <h3 className="retro-text text-lg md:text-xl text-lime-400 mb-3 md:mb-4 border-b border-zinc-800 pb-1">Technical Loadout</h3>
                                         <div className="space-y-3 md:space-y-5 text-xs sm:text-sm">
                                             <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-lime-500">
                                                 <strong className="text-white block mb-1 text-sm">💾 Data & Analytics:</strong>
@@ -311,6 +274,41 @@
                             </div>
                         </div>
 
+                        {/* BOTTOM FOOTER SECTION */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 inter-text">
+                            {/* Hobbies & Interests */}
+                            <div className="panel panel-lime h-full flex flex-col">
+                                <div className="panel-header bg-lime-400 text-black">Hobbies & Interests</div>
+                                <div className="p-4 md:p-6 text-sm sm:text-base text-slate-300 leading-relaxed flex-1 flex items-center bg-zinc-900/30">
+                                    <div className="flex gap-3 items-start">
+                                        <span className="text-lime-400 text-xl">💡</span>
+                                        <p>{data.interests.hobbies}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* External Directories */}
+                            <div className="panel panel-yellow h-full flex flex-col">
+                                <div className="panel-header bg-yellow-400 text-black">External Directories</div>
+                                <div className="p-4 md:p-6 flex flex-col justify-center gap-4 text-xs sm:text-sm font-medium flex-1 bg-zinc-900/30">
+                                    <a href={data.links.storygraph} target="_blank" className="border border-zinc-700 p-3 flex items-center gap-4 truncate hover:border-yellow-400 hover:text-yellow-400 transition-colors cursor-pointer bg-zinc-950 shadow-md hover:shadow-[0_0_10px_rgba(250,204,21,0.4)]">
+                                        <span className="text-yellow-400 text-2xl">📚</span> 
+                                        <div>
+                                            <div className="text-white text-base">StoryGraph</div>
+                                            <div className="text-[11px] text-zinc-500 font-mono">@haterrod</div>
+                                        </div>
+                                    </a>
+                                    <a href={data.links.spotify} target="_blank" className="border border-zinc-700 p-3 flex items-center gap-4 truncate hover:border-lime-400 hover:text-lime-400 transition-colors cursor-pointer bg-zinc-950 shadow-md hover:shadow-[0_0_10px_rgba(57,255,20,0.4)]">
+                                        <span className="text-lime-400 text-2xl">🎵</span> 
+                                        <div>
+                                            <div className="text-white text-base">Spotify</div>
+                                            <div className="text-[11px] text-zinc-500 font-mono">Playlists & Vibes</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                         <footer className="mt-8 text-center text-[10px] md:text-xs text-zinc-600 retro-text">
                             <p>&copy; {new Date().getFullYear()} Heather Rod. End of line.</p>
                         </footer>
@@ -327,4 +325,4 @@
         }
     </script>
 </body>
-</html>                                      
+</html>
