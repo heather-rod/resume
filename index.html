@@ -7,9 +7,6 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- React & ReactDOM -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
@@ -45,7 +42,7 @@
     </div>
 
     <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
+        const { useState } = React;
 
         // Reusable Input Component 
         function CyberInput({ label, name, value, onChange, type="text" }) {
@@ -218,60 +215,6 @@
         function Viewer({ data }) {
           const [activeJobId, setActiveJobId] = useState(data.jobs[0]?.id);
           const activeJob = data.jobs.find(j => j.id === activeJobId) || data.jobs[0];
-          const chartRef = useRef(null);
-
-          useEffect(() => {
-            let chartInstance = null;
-            if (chartRef.current && window.Chart) {
-                window.Chart.defaults.font.family = "'Inter', sans-serif";
-                window.Chart.defaults.color = '#cbd5e1';
-
-                const wrap = (str) => {
-                    const words = str.split(' ');
-                    let lines = [], current = '';
-                    words.forEach(w => {
-                        if((current + w).length > 12) { lines.push(current); current = w + ' '; } 
-                        else { current += w + ' '; }
-                    });
-                    if(current) lines.push(current.trim());
-                    return lines;
-                };
-
-                chartInstance = new window.Chart(chartRef.current, {
-                  type: 'radar',
-                  data: {
-                    labels: [wrap('Design Thinking'), wrap('User Research'), wrap('Audience Data'), wrap('Sentiment'), wrap('Measurement')],
-                    datasets: [{
-                      label: 'Skill Level',
-                      data: [95, 85, 90, 85, 95],
-                      backgroundColor: 'rgba(57, 255, 20, 0.15)',
-                      borderColor: '#39ff14',
-                      pointBackgroundColor: '#000',
-                      pointBorderColor: '#00ffff',
-                      pointHoverBackgroundColor: '#ff00ff',
-                      borderWidth: 2
-                    }]
-                  },
-                  options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                      r: {
-                        angleLines: { color: 'rgba(255,255,255,0.1)' },
-                        grid: { color: 'rgba(255,255,255,0.1)' },
-                        pointLabels: { font: { size: 10, family: "'VT323', monospace" }, color: '#39ff14' },
-                        ticks: { display: false, min: 0, max: 100 }
-                      }
-                    },
-                    plugins: {
-                      legend: { display: false },
-                      tooltip: { backgroundColor: '#000', titleColor: '#00ffff', bodyColor: '#fff', borderColor: '#ff00ff', borderWidth: 1 }
-                    }
-                  }
-                });
-            }
-            return () => { if (chartInstance) chartInstance.destroy(); };
-          }, [data]);
 
           return (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 inter-text">
@@ -365,26 +308,32 @@
                   </div>
                 </div>
 
+                {/* Updated Competencies Section - Full Width, No Chart */}
                 <div className="panel panel-lime">
                   <div className="panel-header bg-lime-400 text-black">Strategic Hardware</div>
-                  <div className="p-4 md:p-6 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                    <div>
-                      <h3 className="retro-text text-lg md:text-xl text-lime-400 mb-3 md:mb-4 border-b border-zinc-800 pb-1">Technical Loadout</h3>
-                      <div className="space-y-3 md:space-y-4 text-xs sm:text-sm">
-                        <div><strong className="text-white block mb-0.5 md:mb-1">💾 Data & Analytics:</strong><span className="text-slate-400">{data.competencies.data}</span></div>
-                        <div><strong className="text-white block mb-0.5 md:mb-1">🎯 Strategic Skills:</strong><span className="text-slate-400">{data.competencies.strategy}</span></div>
-                        <div><strong className="text-white block mb-0.5 md:mb-1">💻 Digital Platforms:</strong><span className="text-slate-400">{data.competencies.platforms}</span></div>
+                  <div className="p-4 md:p-6">
+                    <h3 className="retro-text text-lg md:text-xl text-lime-400 mb-3 md:mb-4 border-b border-zinc-800 pb-1">Technical Loadout</h3>
+                    <div className="space-y-3 md:space-y-5 text-xs sm:text-sm">
+                      <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-lime-500">
+                        <strong className="text-white block mb-1 text-sm">💾 Data & Analytics:</strong>
+                        <span className="text-slate-400 leading-relaxed">{data.competencies.data}</span>
                       </div>
-                    </div>
-                    <div className="flex flex-col justify-center items-center">
-                      <div className="w-full max-w-[240px] md:max-w-[300px] h-[200px] md:h-[250px] relative"><canvas ref={chartRef}></canvas></div>
+                      <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-fuchsia-500">
+                        <strong className="text-white block mb-1 text-sm">🎯 Strategic Skills:</strong>
+                        <span className="text-slate-400 leading-relaxed">{data.competencies.strategy}</span>
+                      </div>
+                      <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-cyan-500">
+                        <strong className="text-white block mb-1 text-sm">💻 Digital Platforms:</strong>
+                        <span className="text-slate-400 leading-relaxed">{data.competencies.platforms}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           );
-        } 
+        }
+
         // --- EDITOR COMPONENT ---
         function Editor({ data, setData }) {
           const handleProfileChange = (e) => setData({ ...data, profile: { ...data.profile, [e.target.name]: e.target.value } });
@@ -409,7 +358,8 @@
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-                  {/* Left Col Edit */}
+                
+                {/* Left Col Edit */}
                 <div className="space-y-6 md:space-y-8">
                   <div className="panel panel-cyan p-4 md:p-6">
                     <h2 className="retro-text text-xl md:text-2xl text-cyan-400 border-b border-zinc-800 pb-2 mb-4">Edit Profile Info</h2>
@@ -440,7 +390,6 @@
                     <CyberInput type="textarea" label="Digital Platforms" name="platforms" value={data.competencies.platforms} onChange={handleCompetencyChange} />
                   </div>
                 </div>
-
                 {/* Right Col Edit: JOBS */}
                 <div className="space-y-6 md:space-y-8">
                   <div className="panel panel-fuchsia p-4 md:p-6">
