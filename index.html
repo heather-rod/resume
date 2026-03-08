@@ -3,26 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heather Rod | Y2K CMS Dashboard</title>
+    <title>Heather Rod | Y2K CMS</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- React & ReactDOM -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- React & ReactDOM (Using Cloudflare for maximum mobile reliability) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
     
-    <!-- Babel (Translates React/JSX for the browser) -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Babel (Translates React code for the browser) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.6/babel.min.js"></script>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div id="root"></div>
+<body class="bg-black text-slate-200">
+    
+    <!-- Fallback Error Catcher (Prevents white screens) -->
+    <script>
+        window.onerror = function(msg, url, lineNo) {
+            document.getElementById('root').innerHTML = 
+                "<div style='color:#ff00ff; font-family:monospace; padding:20px; border:2px solid #ff00ff; margin:20px;'>" +
+                "<h2 style='font-size:24px; margin-bottom:10px;'>SYSTEM CRASH</h2>" +
+                "<p><strong>Error:</strong> " + msg + "</p>" +
+                "<p><strong>Line:</strong> " + lineNo + "</p>" +
+                "<p style='margin-top:20px; color:#cbd5e1;'>Your mobile browser might be blocking the scripts. Try turning off strict ad-blockers or try on a computer.</p>" +
+                "</div>";
+            return false;
+        };
+    </script>
+
+    <div id="root">
+        <!-- Loading State -->
+        <div style="color: #00ffff; font-family: 'VT323', monospace; padding: 40px; font-size: 24px; text-align: center; border: 2px solid #00ffff; margin: 20px; box-shadow: 0 0 10px rgba(0,255,255,0.5);">
+            INITIALIZING SYSTEM...<br><br>
+            <span style="font-size: 16px; color: #cbd5e1; font-family: sans-serif;">
+                (If this screen stays for more than 5 seconds, your browser is blocking the application scripts.)
+            </span>
+        </div>
+    </div>
 
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
+
+        // Reusable Input Component (Placed outside App to prevent focus loss)
+        function CyberInput({ label, name, value, onChange, type="text" }) {
+            return (
+                <div className="mb-4">
+                    <label className="block text-cyan-400 retro-text text-lg mb-1">{label}</label>
+                    {type === "textarea" ? (
+                        <textarea name={name} value={value} onChange={onChange} rows="4" className="w-full bg-zinc-950 border border-zinc-700 text-white p-2 font-sans text-sm focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400" />
+                    ) : (
+                        <input type="text" name={name} value={value} onChange={onChange} className="w-full bg-zinc-950 border border-zinc-700 text-white p-2 font-sans text-sm focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400" />
+                    )}
+                </div>
+            );
+        }
 
         function App() {
           const [isEditing, setIsEditing] = useState(false);
@@ -123,9 +163,7 @@
                 .panel-cyan { border-color: #00ffff; box-shadow: 2px 2px 0px #00ffff; }
                 .panel-fuchsia { border-color: #ff00ff; box-shadow: 2px 2px 0px #ff00ff; }
                 .panel-lime { border-color: #39ff14; box-shadow: 2px 2px 0px #39ff14; }
-                .panel-header { 
-                  padding: 4px 8px; font-family: 'VT323', monospace; font-size: 1.25rem; text-transform: uppercase; 
-                }
+                .panel-header { padding: 4px 8px; font-family: 'VT323', monospace; font-size: 1.25rem; text-transform: uppercase; }
                 ::-webkit-scrollbar { width: 10px; }
                 ::-webkit-scrollbar-track { background: #000; border-left: 1px solid #00ffff; }
                 ::-webkit-scrollbar-thumb { background: #ff00ff; }
@@ -137,7 +175,7 @@
               <div className="p-4 md:p-8 max-w-7xl mx-auto">
                 <header className="panel panel-cyan mb-6 bg-black flex flex-col md:flex-row justify-between items-center p-4">
                   <div className="text-2xl md:text-4xl text-cyan-400 retro-text uppercase tracking-widest drop-shadow-[0_0_5px_rgba(0,255,255,0.8)]">
-                    &#9608; Heather_Rod.exe <span className="blink">_</span>
+                    █ Heather_Rod.exe <span className="blink">_</span>
                   </div>
                   <div className="mt-4 md:mt-0 flex gap-4">
                     <button 
@@ -166,11 +204,8 @@
           const chartRef = useRef(null);
 
           useEffect(() => {
-            const scriptId = 'chartjs-script';
             let chartInstance = null;
-
-            const renderChart = () => {
-              if (chartRef.current && window.Chart) {
+            if (chartRef.current && window.Chart) {
                 window.Chart.defaults.font.family = "'Inter', sans-serif";
                 window.Chart.defaults.color = '#cbd5e1';
 
@@ -217,20 +252,7 @@
                     }
                   }
                 });
-              }
-            };
-
-            if (!document.getElementById(scriptId)) {
-              const script = document.createElement('script');
-              script.id = scriptId;
-              script.src = "https://cdn.jsdelivr.net/npm/chart.js";
-              script.async = true;
-              script.onload = renderChart;
-              document.body.appendChild(script);
-            } else {
-              if (window.Chart) renderChart();
             }
-
             return () => { if (chartInstance) chartInstance.destroy(); };
           }, [data]);
 
@@ -239,16 +261,16 @@
               <div className="lg:col-span-4 space-y-6">
                 <div className="panel panel-fuchsia p-4 text-center">
                   <h1 className="text-3xl text-white retro-text mb-4">{data.profile.name}</h1>
-                  <div className="w-48 h-48 mx-auto border-4 border-fuchsia-500 mb-4 flex items-center justify-center bg-zinc-900 text-fuchsia-500 text-6xl shadow-[0_0_15px_rgba(255,0,255,0.5)]">&#128123;</div>
+                  <div className="w-48 h-48 mx-auto border-4 border-fuchsia-500 mb-4 flex items-center justify-center bg-zinc-900 text-fuchsia-500 text-6xl shadow-[0_0_15px_rgba(255,0,255,0.5)]">👻</div>
                   <p className="retro-text text-xl text-cyan-400 mb-2">"{data.profile.tagline}"</p>
-                  <p className="text-sm font-bold text-lime-400">&#9792; {data.profile.gender} | {data.profile.location}</p>
+                  <p className="text-sm font-bold text-lime-400">♀ {data.profile.gender} | {data.profile.location}</p>
                 </div>
 
                 <div className="panel panel-cyan">
                   <div className="panel-header bg-cyan-400 text-black">Contacting Heather</div>
                   <div className="p-4 grid grid-cols-1 gap-2 text-sm font-medium">
-                    <div className="border border-zinc-700 p-2 flex items-center gap-3"><span className="text-cyan-400 text-lg">&#9993;</span> {data.profile.email}</div>
-                    <div className="border border-zinc-700 p-2 flex items-center gap-3"><span className="text-cyan-400 text-lg">&#128222;</span> {data.profile.phone}</div>
+                    <div className="border border-zinc-700 p-2 flex items-center gap-3"><span className="text-cyan-400 text-lg">✉️</span> {data.profile.email}</div>
+                    <div className="border border-zinc-700 p-2 flex items-center gap-3"><span className="text-cyan-400 text-lg">📞</span> {data.profile.phone}</div>
                     <a href="Heather_Rod_Resume.pdf" target="_blank" className="mt-2 block border border-fuchsia-500 bg-fuchsia-500/10 text-fuchsia-400 p-2 text-center hover:bg-fuchsia-500 hover:text-white transition-colors retro-text text-lg uppercase">
                       [ Download PDF ]
                     </a>
@@ -298,39 +320,9 @@
                           <ul className="space-y-4 text-sm text-slate-300 leading-relaxed">
                             {activeJob.bullets.map((bullet, idx) => (
                               <li key={idx} className="flex gap-3 items-start">
-                                <span className="text-fuchsia-500 mt-0.5 text-lg leading-none">&#8227;</span><span>{bullet}</span>
+                                <span className="text-fuchsia-500 mt-0.5 text-lg leading-none">‣</span><span>{bullet}</span>
                               </li>
                             ))}
                           </ul>
                         </>
-                      ) : (<p className="italic text-zinc-500">Select a role to initialize data...</p>)}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="panel panel-lime">
-                  <div className="panel-header bg-lime-400 text-black">Strategic Hardware & Software</div>
-                  <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="retro-text text-xl text-lime-400 mb-4 border-b border-zinc-800 pb-1">Technical Loadout</h3>
-                      <div className="space-y-4 text-sm">
-                        <div><strong className="text-white block mb-1">&#128190; Data & Analytics:</strong><span className="text-slate-400">{data.competencies.data}</span></div>
-                        <div><strong className="text-white block mb-1">&#127919; Strategic Skills:</strong><span className="text-slate-400">{data.competencies.strategy}</span></div>
-                        <div><strong className="text-white block mb-1">&#128187; Digital Platforms:</strong><span className="text-slate-400">{data.competencies.platforms}</span></div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col justify-center items-center">
-                      <div className="w-full max-w-[300px] h-[250px] relative"><canvas ref={chartRef}></canvas></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        }
-
-        // --- EDITOR COMPONENT ---
-        function Editor({ data, setData }) {
-          const handleProfileChange = (e) => setData({ ...data, profile: { ...data.profile, [e.target.name]: e.target.value } });
-          const handleInterestChange = (e) => setData({ ...data, interests: { ...data.interests, [e.target.name]: e.target.value } });
-    
+                      ) : (<p className="italic t
