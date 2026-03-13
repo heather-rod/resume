@@ -53,15 +53,29 @@
                 location: "Bloomington, IL",
                 email: "rodheather23@gmail.com"
             },
-            interests: {
-                hobbies: "Competitive Powerlifting, Cooking & Baking, Deep-Dive Reading."
+            lists: {
+                hobbies: [
+                    "🐦‍⬛ Communing with Nature",
+                    "🥇 Competitive Powerlifting",
+                    "👩‍🍳 Cooking & Baking",
+                    "📚 Deep-Dive Reading",
+                    "🎻 Playing Viola"
+                ],
+                interests: [
+                    "👩‍🚀 Astronomy & Astrology",
+                    "🐈 Cats, Lemurs, and Corvids",
+                    "✨ Quantum Mechanics",
+                    "🏛️ Social Sciences",
+                    "🎮 Video Games"
+                ]
             },
             links: {
                 storygraph: "https://app.thestorygraph.com/profile/haterrod",
-                spotify: "https://open.spotify.com/user/1228970516?si=9khD3RgCR-eu_uZXzINy_g"
+                spotify: "https://open.spotify.com/user/1228970516?si=9khD3RgCR-eu_uZXzINy_g",
+                substack: "https://substack.com/@h8rrod"
             },
             blurbs: {
-                about: "I am a creative communications analyst championing data literacy and user-centric strategy. I have proven success applying human-centered design to audience insights, developing intuitive analytics dashboards, and pioneering approaches that drive personalized, transparent employee engagement and transform corporate communication culture."
+                about: "I am a creative communication analyst championing data literacy and user-centric strategy. I have proven success applying human-centered design to audience insights, developing intuitive analytics dashboards, and pioneering approaches that drive personalized and transparent audience engagement and transform communication culture. Mostly I'm passionate about learning and understanding the world around me, and connecting with others through shared experiences and finding common ground."
             },
             jobs: [
                 {
@@ -70,7 +84,7 @@
                     company: "State Farm | Corporate Comms",
                     dates: "05.2024 – Present",
                     bullets: [
-                        "Developed Power BI and Adobe Analytics dashboards to enable greater understanding of audiences and content performance, empowering peers to independently and confidently apply data and insights.",
+                        "Developed Power BI and Adobe Analytics dashboards to enable greater understanding of audiences and content performance, empowering communicators to independently and confidently apply data and insights.",
                         "Redesigned catastrophe communication feedback loops using open-response metrics during high-stakes events, resulting in overwhelmingly positive response and increased employee perception of enterprise transparency.",
                         "Researched and co-developed internal channels benchmarking and an effective internal communication framework alongside senior peers and leaders to align with industry best practices."
                     ]
@@ -82,7 +96,7 @@
                     dates: "07.2023 – 05.2024",
                     bullets: [
                         "Researched and reported for SFnet News and assumed ownership of quarterly reporting for internal channels.",
-                        "Applied design thinking to develop comprehensive Audience Communication Profiles, equipping communicators to understand unique audience needs and deliver personalized, relevant messaging."
+                        "Collaborated with project group to develop comprehensive Audience Communication Profiles, equipping communicators to understand unique audience needs and deliver personalized, relevant messaging."
                     ]
                 },
                 {
@@ -91,14 +105,14 @@
                     company: "Illinois Soybean Association",
                     dates: "08.2020 – 07.2023",
                     bullets: [
-                        "Connected 43,000 farmers to the work of the organization through multiple digital channels, pioneering digital marketing and analytics standards and practices among soybean associations.",
+                        "Pioneered digital marketing and analytics standards and practices among soybean associations, connecting 43,000 farmers to the work of the organization through multiple digital channels.",
                         "Coordinated, directed, and collaborated with external contractors and internal stakeholders on multiple concurrent organizational and departmental projects, delivering visible value to constituents.",
                         "Launched and grew internship program and provided company-wide HR/IT services during leadership vacancies, demonstrating accountability and adaptability through periods of disruption and uncertainty."
                     ]
                 },
                 {
                     id: "job-4",
-                    title: "Digital & Support Coordinator",
+                    title: "Digital & Support Services Coordinator",
                     company: "Illinois Soybean Association",
                     dates: "01.2019 – 08.2020",
                     bullets: [
@@ -114,16 +128,38 @@
                     bullets: [
                         "HR Recruiter | The Kelly Group (04.2018 – 12.2018)",
                         "Total Rewards Specialist | Pekin Insurance (04.2017 – 03.2018)",
-                        "HR Roles | Skill Sprout, LLC (12.2014 – 04.2017)",
+                        "HR & Marketing Assistant; HR Coordinator; HR Manager | Skill Sprout, LLC (12.2014 – 04.2017)",
                         "Business Co-Owner & Manager | Nacho Mama's Grilled Cheese Food Truck (07.2013 – 06.2017)"
                     ]
                 }
             ],
             competencies: {
                 data: "Power BI, Adobe Analytics, Excel",
-                strategy: "Design Thinking, User Research, Audience Demographics, Creative Problem Solving, Measurement",
-                platforms: "Drupal, WordPress, SharePoint, Mailchimp, HubSpot, Sprout, Staffbase, Viva Engage"
-            }
+                strategy: "Creative Problem Solving, Research and Measurement, Design Thinking, User Experience",
+                platforms: "Drupal, WordPress, Mailchimp, HubSpot, Sprout, Canva, Staffbase, Gemini, GitHub"
+            },
+            education: {
+                degree: "Bachelor of Arts, Communication",
+                school: "Eureka College | Eureka, IL",
+                year: "Class of 2011"
+            },
+            affiliations: [
+                {
+                    title: "Pride Business Resource Group",
+                    company: "State Farm",
+                    dates: "07.2023 – Present",
+                    roles: [
+                        {
+                            name: "2026 Bloomington Area Engagement Ambassador",
+                            desc: "Collaborate with BRG leaders to connect LGBTQ+ employees and allies with each other, the enterprise, and the broader community."
+                        },
+                        {
+                            name: "2025-2026 Business Pillar Support",
+                            desc: "Coordinate content and logistics for quarterly all-member meetings, support and host virtual events, and develop resources to drive engagement and organizational alignment."
+                        }
+                    ]
+                }
+            ]
         };
 
         // --- MAIN APPLICATION COMPONENT ---
@@ -168,50 +204,118 @@
                             </div>
                         </header>
 
-                        {/* Top Main Section */}
+                        {/* Main Grid Layout */}
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 inter-text mb-4 md:mb-6">
                             
-                            {/* LEFT COLUMN */}
+                            {/* ================= LEFT COLUMN ================= */}
                             <div className="lg:col-span-4 space-y-4 md:space-y-6">
                                 
-                                {/* Identity */}
+                                {/* Identity (Fuchsia) */}
                                 <div className="panel panel-fuchsia p-4 text-center">
                                     <h1 className="text-2xl sm:text-3xl text-white retro-text mb-3 md:mb-4">{data.profile.name}</h1>
-                                    <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 mx-auto border-2 md:border-4 border-fuchsia-500 mb-3 md:mb-4 flex items-center justify-center bg-zinc-900 text-fuchsia-500 text-4xl md:text-6xl shadow-[0_0_10px_rgba(255,0,255,0.5)]">
-                                        🍕
+                                    
+                                    <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 mx-auto border-2 md:border-4 border-fuchsia-500 mb-3 md:mb-4 relative flex items-center justify-center bg-zinc-900 overflow-hidden shadow-[0_0_10px_rgba(255,0,255,0.5)]">
+                                        {/* GITHUB IMAGE UPLOAD INSTRUCTIONS:
+                                            To add a photo of yourself, upload an image named "profile.jpg" to your GitHub repository.
+                                            If the browser can't find that file, it safely hides the image tag and reveals the pizza emoji!
+                                        */}
+                                        <img 
+                                            src="profile.jpg" 
+                                            alt="Heather Rod" 
+                                            className="w-full h-full object-cover absolute inset-0 z-10"
+                                            onError={(e) => e.target.style.display = 'none'} 
+                                        />
+                                        <span className="text-4xl md:text-6xl text-fuchsia-500 z-0">🍕</span>
                                     </div>
+
                                     <p className="retro-text text-lg sm:text-xl text-cyan-400 mb-2">"{data.profile.tagline}"</p>
                                     <p className="text-xs sm:text-sm font-bold text-lime-400">♀ {data.profile.gender} | {data.profile.location}</p>
                                 </div>
 
-                                {/* Contacting */}
-                                <div className="panel panel-cyan">
-                                    <div className="panel-header bg-cyan-400 text-black">Contacting Heather</div>
+                                {/* Contacting (Lime) */}
+                                <div className="panel panel-lime">
+                                    <div className="panel-header bg-lime-400 text-black">Contacting Heather</div>
                                     <div className="p-3 md:p-4 flex flex-col gap-2 text-xs sm:text-sm font-medium">
-                                        <a href={`mailto:${data.profile.email}`} className="border border-zinc-700 p-2 flex items-center justify-center gap-2 md:gap-3 truncate hover:border-cyan-400 hover:text-cyan-400 transition-colors cursor-pointer group">
-                                            <span className="text-cyan-400 text-base md:text-lg group-hover:drop-shadow-[0_0_5px_rgba(0,255,255,0.8)]">✉️</span> {data.profile.email}
+                                        <a href={`mailto:${data.profile.email}`} className="border border-zinc-700 p-2 flex items-center justify-center gap-2 md:gap-3 truncate hover:border-lime-400 hover:text-lime-400 transition-colors cursor-pointer group bg-zinc-950">
+                                            <span className="text-lime-400 text-base md:text-lg group-hover:drop-shadow-[0_0_5px_rgba(132,204,22,0.8)]">✉️</span> {data.profile.email}
                                         </a>
-                                        <a href="Heather_Rod_Resume.pdf" target="_blank" className="mt-2 block border border-fuchsia-500 bg-fuchsia-500/10 text-fuchsia-400 p-3 text-center hover:bg-fuchsia-500 hover:text-white transition-colors retro-text text-base md:text-lg uppercase">
-[ Download PDF ]
+                                        <a href="Heather_Rod_Resume.pdf" target="_blank" className="mt-2 block border border-zinc-700 p-3 text-center hover:border-lime-400 hover:text-lime-400 transition-colors retro-text text-base md:text-lg uppercase bg-zinc-950 group">
+                                            <span className="text-lime-400 mr-2 group-hover:drop-shadow-[0_0_5px_rgba(132,204,22,0.8)]">📄</span> [ Download PDF ]
                                         </a>
                                     </div>
                                 </div>
 
-                                {/* About Me / Blurbs */}
-                                <div className="panel panel-fuchsia">
-                                    <div className="panel-header bg-fuchsia-500 text-white">About Me</div>
-                                    <div className="p-4 md:p-6">
-                                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">{data.blurbs.about}</p>
+                                {/* External Directories (Cyan) */}
+                                <div className="panel panel-cyan">
+                                    <div className="panel-header bg-cyan-400 text-black">External Directories</div>
+                                    <div className="p-3 md:p-4 flex flex-col gap-3 text-xs sm:text-sm font-medium">
+                                        <a href={data.links.storygraph} target="_blank" className="border border-zinc-700 p-2 flex items-center gap-3 truncate hover:border-yellow-400 hover:text-yellow-400 transition-colors cursor-pointer bg-zinc-950 group">
+                                            <span className="text-yellow-400 text-xl group-hover:drop-shadow-[0_0_5px_rgba(250,204,21,0.8)]">📚</span> 
+                                            <div>
+                                                <div className="text-white group-hover:text-yellow-400 transition-colors">StoryGraph</div>
+                                                <div className="text-[10px] text-zinc-500 font-mono">NeverEnding stories</div>
+                                            </div>
+                                        </a>
+                                        <a href={data.links.spotify} target="_blank" className="border border-zinc-700 p-2 flex items-center gap-3 truncate hover:border-lime-400 hover:text-lime-400 transition-colors cursor-pointer bg-zinc-950 group">
+                                            <span className="text-lime-400 text-xl group-hover:drop-shadow-[0_0_5px_rgba(132,204,22,0.8)]">🎵</span> 
+                                            <div>
+                                                <div className="text-white group-hover:text-lime-400 transition-colors">Spotify</div>
+                                                <div className="text-[10px] text-zinc-500 font-mono">Playlists and vibes</div>
+                                            </div>
+                                        </a>
+                                        <a href={data.links.substack} target="_blank" className="border border-zinc-700 p-2 flex items-center gap-3 truncate hover:border-fuchsia-500 hover:text-fuchsia-400 transition-colors cursor-pointer bg-zinc-950 group">
+                                            <span className="text-fuchsia-500 text-xl group-hover:drop-shadow-[0_0_5px_rgba(217,70,239,0.8)]">📝</span> 
+                                            <div>
+                                                <div className="text-white group-hover:text-fuchsia-400 transition-colors">Substack</div>
+                                                <div className="text-[10px] text-zinc-500 font-mono">Deep dives & musings</div>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
+
+                                {/* Hobbies & Interests (Yellow) */}
+                                <div className="panel panel-yellow">
+                                    <div className="panel-header bg-yellow-400 text-black">Hobbies & Interests</div>
+                                    <div className="p-4 md:p-6 text-sm space-y-6 bg-zinc-900/30">
+                                        <div>
+                                            <strong className="text-yellow-400 font-bold block mb-3 retro-text text-base md:text-lg border-b border-zinc-800 pb-1">Hobbies</strong>
+                                            <ul className="text-slate-300 leading-relaxed space-y-2">
+                                                {data.lists.hobbies.map((item, i) => (
+                                                    <li key={i} className="flex items-start gap-2">
+                                                        <span>{item}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <strong className="text-yellow-400 font-bold block mb-3 retro-text text-base md:text-lg border-b border-zinc-800 pb-1">Interests</strong>
+                                            <ul className="text-slate-300 leading-relaxed space-y-2">
+                                                {data.lists.interests.map((item, i) => (
+                                                    <li key={i} className="flex items-start gap-2">
+                                                        <span>{item}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
-                            {/* RIGHT COLUMN */}
+                            {/* ================= RIGHT COLUMN ================= */}
                             <div className="lg:col-span-8 space-y-4 md:space-y-6">
                                 
-                                {/* Experience */}
-                                <div className="panel panel-cyan">
-                                    <div className="panel-header bg-cyan-400 text-black">Professional Experience</div>
+                                {/* About Me / Blurbs (Yellow) */}
+                                <div className="panel panel-yellow">
+                                    <div className="panel-header bg-yellow-400 text-black">About Me</div>
+                                    <div className="p-5 md:p-6 bg-zinc-900/30">
+                                        <p className="text-sm md:text-base text-slate-200 leading-relaxed font-medium">{data.blurbs.about}</p>
+                                    </div>
+                                </div>
+
+                                {/* Experience (Fuchsia) */}
+                                <div className="panel panel-fuchsia">
+                                    <div className="panel-header bg-fuchsia-500 text-white">Professional Experience</div>
                                     <div className="p-0 flex flex-col md:flex-row border-t border-zinc-800">
                                         
                                         {/* Horizontal Scroll on Mobile, Vertical on Desktop */}
@@ -220,7 +324,7 @@
                                                 <div 
                                                     key={job.id} 
                                                     onClick={() => setActiveJobId(job.id)} 
-                                                    className={`shrink-0 w-[200px] md:w-auto cursor-pointer p-3 rounded border text-left transition-all ${activeJobId === job.id ? 'border-fuchsia-500 bg-fuchsia-500/10 border-l-4 md:border-l-4 md:border-b-1 border-b-4 md:border-b-fuchsia-500' : 'border-zinc-800 hover:border-cyan-500 hover:bg-cyan-500/10'}`}
+                                                    className={`shrink-0 w-[200px] md:w-auto cursor-pointer p-3 rounded border text-left transition-all ${activeJobId === job.id ? 'border-fuchsia-500 bg-fuchsia-500/10 border-l-4 md:border-l-4 md:border-b-1 border-b-4 md:border-b-fuchsia-500' : 'border-zinc-800 hover:border-fuchsia-500 hover:bg-fuchsia-500/10'}`}
                                                 >
                                                     <div className="font-bold text-white text-[13px] md:text-sm truncate">{job.title}</div>
                                                     <div className="text-[10px] md:text-xs text-zinc-500 mt-1 font-mono truncate">{job.dates}</div>
@@ -232,9 +336,9 @@
                                             {activeJob && (
                                                 <>
                                                     <div className="mb-4 border-b border-zinc-800 pb-3 md:pb-4">
-                                                        <span className="bg-cyan-900 text-cyan-300 text-[10px] md:text-xs font-mono px-2 py-1 mb-2 inline-block uppercase tracking-widest">{activeJob.dates}</span>
+                                                        <span className="bg-fuchsia-900 text-fuchsia-300 text-[10px] md:text-xs font-mono px-2 py-1 mb-2 inline-block uppercase tracking-widest">{activeJob.dates}</span>
                                                         <h3 className="text-lg md:text-xl font-bold text-white mb-1 leading-tight">{activeJob.title}</h3>
-                                                        <p className="text-xs md:text-sm text-fuchsia-400 font-mono leading-tight">// {activeJob.company}</p>
+                                                        <p className="text-xs md:text-sm text-cyan-400 font-mono leading-tight">// {activeJob.company}</p>
                                                     </div>
                                                     <ul className="space-y-3 md:space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
                                                         {activeJob.bullets.map((bullet, idx) => (
@@ -250,12 +354,12 @@
                                     </div>
                                 </div>
 
-                                {/* Hardware */}
-                                <div className="panel panel-lime">
-                                    <div className="panel-header bg-lime-400 text-black">Strategic Hardware</div>
+                                {/* Hardware (Cyan) */}
+                                <div className="panel panel-cyan">
+                                    <div className="panel-header bg-cyan-400 text-black">Strategic Hardware</div>
                                     <div className="p-4 md:p-6">
                                         <div className="space-y-3 md:space-y-5 text-xs sm:text-sm">
-                                            <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-lime-500">
+                                            <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-cyan-500">
                                                 <strong className="text-white block mb-1 text-sm">💾 Data & Analytics:</strong>
                                                 <span className="text-slate-400 leading-relaxed">{data.competencies.data}</span>
                                             </div>
@@ -263,7 +367,7 @@
                                                 <strong className="text-white block mb-1 text-sm">🎯 Strategic Skills:</strong>
                                                 <span className="text-slate-400 leading-relaxed">{data.competencies.strategy}</span>
                                             </div>
-                                            <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-cyan-500">
+                                            <div className="bg-zinc-950 p-3 border border-zinc-800 border-l-4 border-l-lime-500">
                                                 <strong className="text-white block mb-1 text-sm">💻 Digital Platforms:</strong>
                                                 <span className="text-slate-400 leading-relaxed">{data.competencies.platforms}</span>
                                             </div>
@@ -271,46 +375,47 @@
                                     </div>
                                 </div>
 
-                            </div>
-                        </div>
+                                {/* Education & Affiliations (Lime) */}
+                                <div className="panel panel-lime">
+                                    <div className="panel-header bg-lime-400 text-black">Education & Affiliations</div>
+                                    <div className="p-4 md:p-6 space-y-8 bg-zinc-900/30">
+                                        
+                                        {/* Affiliations */}
+                                        {data.affiliations.map((affil, idx) => (
+                                            <div key={idx}>
+                                                <div className="flex justify-between items-baseline border-b border-zinc-800 pb-2 mb-3">
+                                                    <h3 className="retro-text text-xl md:text-2xl text-lime-400">{affil.title}</h3>
+                                                    <span className="bg-lime-900/30 text-lime-300 text-[10px] md:text-xs font-mono px-2 py-1 uppercase tracking-widest border border-lime-900">{affil.dates}</span>
+                                                </div>
+                                                <p className="text-xs md:text-sm text-cyan-400 font-mono leading-tight mb-4">// {affil.company}</p>
+                                                <ul className="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                                    {affil.roles.map((role, rIdx) => (
+                                                        <li key={rIdx} className="flex gap-3 md:gap-4 items-start">
+                                                            <span className="text-lime-500 mt-0.5 text-base md:text-lg leading-none">‣</span>
+                                                            <span><strong className="text-white">{role.name}:</strong> {role.desc}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        ))}
 
-                        {/* BOTTOM FOOTER SECTION */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 inter-text">
-                            {/* Hobbies & Interests */}
-                            <div className="panel panel-lime h-full flex flex-col">
-                                <div className="panel-header bg-lime-400 text-black">Hobbies & Interests</div>
-                                <div className="p-4 md:p-6 text-sm sm:text-base text-slate-300 leading-relaxed flex-1 flex items-center bg-zinc-900/30">
-                                    <div className="flex gap-3 items-start">
-                                        <span className="text-lime-400 text-xl">💡</span>
-                                        <p>{data.interests.hobbies}</p>
+                                        {/* Education */}
+                                        <div>
+                                            <div className="flex justify-between items-baseline border-b border-zinc-800 pb-2 mb-3">
+                                                <h3 className="retro-text text-xl md:text-2xl text-lime-400">{data.education.degree}</h3>
+                                                <span className="bg-zinc-950 text-zinc-400 text-[10px] md:text-xs font-mono px-2 py-1 uppercase tracking-widest border border-zinc-800">{data.education.year}</span>
+                                            </div>
+                                            <p className="text-xs md:text-sm text-slate-400 font-mono leading-tight">// {data.education.school}</p>
+                                        </div>
+
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* External Directories */}
-                            <div className="panel panel-yellow h-full flex flex-col">
-                                <div className="panel-header bg-yellow-400 text-black">External Directories</div>
-                                <div className="p-4 md:p-6 flex flex-col justify-center gap-4 text-xs sm:text-sm font-medium flex-1 bg-zinc-900/30">
-                                    <a href={data.links.storygraph} target="_blank" className="border border-zinc-700 p-3 flex items-center gap-4 truncate hover:border-yellow-400 hover:text-yellow-400 transition-colors cursor-pointer bg-zinc-950 shadow-md hover:shadow-[0_0_10px_rgba(250,204,21,0.4)]">
-                                        <span className="text-yellow-400 text-2xl">📚</span> 
-                                        <div>
-                                            <div className="text-white text-base">StoryGraph</div>
-                                            <div className="text-[11px] text-zinc-500 font-mono">@haterrod</div>
-                                        </div>
-                                    </a>
-                                    <a href={data.links.spotify} target="_blank" className="border border-zinc-700 p-3 flex items-center gap-4 truncate hover:border-lime-400 hover:text-lime-400 transition-colors cursor-pointer bg-zinc-950 shadow-md hover:shadow-[0_0_10px_rgba(57,255,20,0.4)]">
-                                        <span className="text-lime-400 text-2xl">🎵</span> 
-                                        <div>
-                                            <div className="text-white text-base">Spotify</div>
-                                            <div className="text-[11px] text-zinc-500 font-mono">Playlists & Vibes</div>
-                                        </div>
-                                    </a>
-                                </div>
                             </div>
                         </div>
 
                         <footer className="mt-8 text-center text-[10px] md:text-xs text-zinc-600 retro-text">
-                            <p>&copy; {new Date().getFullYear()} Heather Rod. greetings, conscripts.</p>
+                            <p>&copy; {new Date().getFullYear()} Heather Rod. End of line.</p>
                         </footer>
                     </div>
                 </div>
